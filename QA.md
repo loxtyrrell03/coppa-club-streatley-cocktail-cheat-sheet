@@ -1,0 +1,34 @@
+# QA inventory
+
+## User-visible claims
+
+- The initial iPhone view clearly shows the venue, cheat-sheet purpose, source warning,
+  search, category filters, and the start of the recipe list.
+- Text is comfortably readable, controls meet a 44 px touch-target minimum, and no
+  content clips or creates page-level horizontal scrolling at 390 px or 320 px.
+- All 26 recipes appear in the correct 5 / 7 / 5 / 9 categories with source prices,
+  builds, glass/ice, methods, finishes, and visible alcohol-free labels where applicable.
+- Search is fast across names and ingredients; category filters, clear, empty-state
+  reset, and diacritic-insensitive search all work with visible result counts.
+- The Install control gives exact Safari Add-to-Home-Screen guidance and can be closed.
+- Relative app-shell paths, the manifest, icons, service-worker scope, and offline
+  navigation work from a GitHub Pages-style subpath.
+- Desktop layout is balanced and retains readable card structure.
+- The site has no login, analytics, tracking scripts, or third-party runtime assets.
+
+## Control and state coverage
+
+| Control or state | Functional check | Visual check |
+| --- | --- | --- |
+| Search | Enter `pineapple`; verify matching cards and count; clear | Filtered cards remain legible |
+| Category chips | Select Rocks; select All | Active state is unmistakable |
+| Combined search/filter | Select Spritz and search `0%` | Two alcohol-free cards remain uncluttered |
+| Empty result | Search impossible text; use Show all | Empty state is centered and actionable |
+| Diacritic search | Search `pina`; find Spiced Piña Colada | Correct card name renders |
+| Install | Open dialog; close with both controls/backdrop | Steps and Share icon fit on iPhone |
+| Offline | Load once, set browser offline, reload subpath | Saved page and recipes remain visible |
+| Responsive | Inspect 390×844, 320×568, and 1440×900 | No clipping, overlap, or horizontal page scroll |
+| Motion | Trigger a category filter | Card entrance is restrained; reduced-motion rule exists |
+
+Exploratory checks: rapidly alternate search and filters; use a long ingredient query;
+inspect the densest build cards; and reload a direct hash URL while offline.

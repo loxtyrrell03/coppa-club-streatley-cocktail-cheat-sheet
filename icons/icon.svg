@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Coppa Drinks cocktail glass</title>
+  <rect width="512" height="512" rx="112" fill="#0d4f45"/>
+  <circle cx="398" cy="112" r="54" fill="#d86c50"/>
+  <path d="M116 124h280L276 286v82h72v30H164v-30h72v-82L116 124Z" fill="#fff9ec"/>
+  <path d="M151 154h210l-33 45H184l-33-45Z" fill="#e7b55e"/>
+  <path d="m324 142 70-43" fill="none" stroke="#fff9ec" stroke-linecap="round" stroke-width="18"/>
+</svg>

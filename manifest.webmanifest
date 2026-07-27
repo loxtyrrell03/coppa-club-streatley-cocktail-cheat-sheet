@@ -1,0 +1,38 @@
+{
+  "name": "Coppa Club Streatley Drinks Cheat Sheet",
+  "short_name": "Coppa Drinks",
+  "description": "Fast, offline-friendly working cocktail specs for Coppa Club Streatley.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f6f1e7",
+  "theme_color": "#0d4f45",
+  "categories": ["food", "productivity"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search drinks",
+      "short_name": "Search",
+      "url": "./#recipes"
+    }
+  ]
+}

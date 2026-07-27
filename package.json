@@ -1,0 +1,14 @@
+{
+  "name": "coppa-club-streatley-cocktail-cheat-sheet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An iPhone-friendly, offline cocktail cheat sheet for Coppa Club Streatley.",
+  "scripts": {
+    "start": "node scripts/server.mjs",
+    "test": "node scripts/verify.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.0"
+  }
+}
