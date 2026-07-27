@@ -3,7 +3,8 @@
 An iPhone-first, installable cocktail reference built from the revised **23 July
 2026** Summer 2026 working drinks sheet.
 
-**Open the app:**  
+**Open the app:**
+
 <https://loxtyrrell03.github.io/coppa-club-streatley-cocktail-cheat-sheet/>
 
 ## What is included
