@@ -1,7 +1,7 @@
 # Coppa Club Streatley drinks cheat sheet
 
-An iPhone-first, installable cocktail reference built from the revised **23 July
-2026** Summer 2026 working drinks sheet.
+An iPhone-first, installable cocktail reference and spaced-repetition trainer built
+from the revised **23 July 2026** Summer 2026 working drinks sheet.
 
 **Open the app:**
 
@@ -15,6 +15,9 @@ An iPhone-first, installable cocktail reference built from the revised **23 July
 - Exact source ingredient wording plus verified plain-language product types
 - Fast name and ingredient search
 - Coupe/Martini, Rocks, Highball, and Spritz filters
+- The user’s 26-card cocktail flashcard deck in a dedicated Study mode
+- Anki-style Again / Hard / Good / Easy scheduling with visible next intervals
+- On-device due counts, learning status, review streak, and session summaries
 - Large type and touch targets for bar use
 - Offline caching and iPhone Home Screen metadata
 - No account, analytics, cookies, or tracking
@@ -49,6 +52,16 @@ npm run photos
 ```
 
 The source list is intentionally curated; review any source change before running it.
+
+## Study scheduling
+
+Study progress is saved in the browser under `coppa-study-v1`; it never leaves the
+device. New cards begin with short learning steps. Again returns a card during the
+session, while graduated review cards receive increasingly long intervals based on
+Again, Hard, Good, or Easy.
+
+This is an Anki-style local trainer, not an Anki Sync client. It does not read or
+alter scheduling history inside the `.apkg` file.
 
 ## iPhone installation
 

@@ -1,6 +1,6 @@
 importScripts("./asset-manifest.js");
 
-const CACHE_NAME = "coppa-drinks-v13";
+const CACHE_NAME = "coppa-drinks-v16";
 const BASE = self.registration.scope;
 const APP_SHELL = [
   BASE,
@@ -8,6 +8,9 @@ const APP_SHELL = [
   `${BASE}styles.css`,
   `${BASE}app.js`,
   `${BASE}data.js`,
+  `${BASE}flashcards.js`,
+  `${BASE}scheduler.js`,
+  `${BASE}study.js`,
   `${BASE}photo-credits.js`,
   `${BASE}asset-manifest.js`,
   `${BASE}manifest.webmanifest`,

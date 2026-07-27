@@ -1,5 +1,6 @@
 import { drinks, products } from "./data.js";
 import { photoCredits } from "./photo-credits.js";
+import "./study.js";
 
 const categoryNames = {
   all: "All drinks",
@@ -347,7 +348,7 @@ function closeBottleDialog({ fromHistory = false } = {}) {
   }
 }
 
-elements.grid.addEventListener("click", (event) => {
+document.addEventListener("click", (event) => {
   const trigger = event.target.closest(".ingredient-button");
   if (trigger) openBottleDialog(trigger);
 });

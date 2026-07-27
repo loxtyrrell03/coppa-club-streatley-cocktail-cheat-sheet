@@ -1,7 +1,7 @@
 {
   "name": "Coppa Club Streatley Drinks Cheat Sheet",
   "short_name": "Coppa Drinks",
-  "description": "Fast, offline-friendly working cocktail specs for Coppa Club Streatley.",
+  "description": "Offline cocktail specs and spaced-repetition training for Coppa Club Streatley.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
@@ -33,6 +33,11 @@
       "name": "Search drinks",
       "short_name": "Search",
       "url": "./#recipes"
+    },
+    {
+      "name": "Study flashcards",
+      "short_name": "Study",
+      "url": "./#study"
     }
   ]
 }

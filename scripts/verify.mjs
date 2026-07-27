@@ -1,7 +1,14 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import { drinks, products } from "../data.js";
+import { flashcards } from "../flashcards.js";
 import { photoCredits } from "../photo-credits.js";
+import {
+  formatInterval,
+  newSchedule,
+  nextInterval,
+  scheduleReview
+} from "../scheduler.js";
 
 const expectedNames = [
   "Pornstar Martini",
@@ -188,6 +195,43 @@ assert.deepEqual(
 );
 assert.equal(Object.keys(products).length, 30, "The bottle-reference catalogue changed.");
 
+assert.equal(flashcards.length, 26, "The imported flashcard deck must contain 26 cards.");
+assert.equal(new Set(flashcards.map((card) => card.id)).size, 26, "Flashcard IDs must be unique.");
+assert.deepEqual(
+  flashcards.map((card) => card.id),
+  drinks.map((drink) => drink.id),
+  "Flashcards must stay aligned with the audited drink order."
+);
+assert.ok(
+  flashcards.every((card) => card.drink?.id === card.id && card.front && card.tags.length),
+  "Every imported flashcard must resolve to an audited recipe."
+);
+assert.equal(
+  flashcards.find((card) => card.id === "popstar-martini").front,
+  "Popstar Martini 0%",
+  "The user’s alcohol-free flashcard front changed."
+);
+
+const scheduleStart = Date.UTC(2026, 6, 27, 12, 0, 0);
+const learningCard = scheduleReview(newSchedule(), "good", scheduleStart);
+assert.equal(learningCard.state, "learning", "A first Good answer should enter learning.");
+assert.equal(
+  learningCard.dueAt,
+  scheduleStart + 10 * 60 * 1000,
+  "A first Good answer should return in 10 minutes."
+);
+const graduatedCard = scheduleReview(learningCard, "good", learningCard.dueAt);
+assert.equal(graduatedCard.state, "review", "A second Good answer should graduate the card.");
+assert.equal(graduatedCard.intervalDays, 1, "A graduated card should start at one day.");
+const lapsedCard = scheduleReview(graduatedCard, "again", graduatedCard.dueAt);
+assert.equal(lapsedCard.state, "learning", "Again should return a review card to learning.");
+assert.equal(lapsedCard.lapses, 1, "Again should record a review lapse.");
+assert.equal(
+  formatInterval(nextInterval(graduatedCard, "easy")),
+  "3d",
+  "Easy interval preview changed unexpectedly."
+);
+
 const assetManifestText = await readFile(
   new URL("../asset-manifest.js", import.meta.url),
   "utf8"
@@ -226,12 +270,13 @@ for (const credit of [
   assert.ok(credit.creator, `${credit.id} needs a creator credit.`);
 }
 
-const [html, manifestText, worker, css, app, sourceAudit] = await Promise.all([
+const [html, manifestText, worker, css, app, study, sourceAudit] = await Promise.all([
   readFile(new URL("../index.html", import.meta.url), "utf8"),
   readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
   readFile(new URL("../service-worker.js", import.meta.url), "utf8"),
   readFile(new URL("../styles.css", import.meta.url), "utf8"),
   readFile(new URL("../app.js", import.meta.url), "utf8"),
+  readFile(new URL("../study.js", import.meta.url), "utf8"),
   readFile(new URL("../PRODUCT_SOURCES.md", import.meta.url), "utf8")
 ]);
 const manifest = JSON.parse(manifestText);
@@ -243,17 +288,27 @@ assert.match(html, /apple-touch-icon/, "Apple touch icon is not linked.");
 assert.match(html, /Numbered cocktail measures are ml/, "The ml guidance is missing.");
 assert.match(html, /live Streatley bar bible wins/, "The source-of-truth warning is missing.");
 assert.match(html, /id="bottle-dialog"/, "The bottle dialog is missing.");
+assert.match(html, /id="study"/, "The spaced-repetition Study view is missing.");
+assert.match(html, /Again, Hard, Good or Easy/, "Study grading guidance is missing.");
 assert.doesNotMatch(html, /(?:href|src)="\//, "Root-relative assets break project Pages.");
 assert.match(worker, /self\.registration\.scope/, "Service worker must derive the Pages base path.");
 assert.match(worker, /asset-manifest\.js/, "The service worker must precache visual assets.");
 assert.match(worker, /photo-credits\.js/, "Offline photo credits must be precached.");
+assert.match(worker, /flashcards\.js/, "Offline flashcards must be precached.");
+assert.match(worker, /scheduler\.js/, "The offline scheduler must be precached.");
+assert.match(worker, /study\.js/, "The Study interface must be precached.");
 assert.match(worker, /cache: "reload"/, "Updated releases must refresh precached assets.");
 assert.match(app, /history\.pushState/, "Bottle dialog must support browser-back dismissal.");
+assert.match(app, /document\.addEventListener\("click"/, "Study ingredients must open bottle photos.");
 assert.match(app, /addEventListener\("cancel"/, "Bottle dialog must support Escape.");
 assert.match(app, /event\.key !== "Tab"/, "Bottle dialog must contain keyboard focus.");
 assert.match(app, /lastBottleTrigger\?\.focus/, "Dialog close must restore focus.");
 assert.match(css, /min-height: 3\.6rem/, "Large ingredient touch targets must be retained.");
+assert.match(css, /\.study-grades/, "Large study grading controls are missing.");
 assert.match(css, /prefers-reduced-motion/, "Reduced-motion support must be retained.");
+assert.match(study, /coppa-study-v1/, "Study progress needs a stable local-storage key.");
+assert.match(study, /localStorage/, "Study progress must persist locally.");
+assert.match(study, /data-rating/, "The four review grades are missing.");
 assert.match(
   sourceAudit,
   /Pexels licence|Creative Commons/,
@@ -261,5 +316,5 @@ assert.match(
 );
 
 console.log(
-  "Verified 26 source-audited recipes, 30 product mappings, 56 credited WebP photos, accessible modal behavior, and offline PWA paths."
+  "Verified 26 source-audited recipes and flashcards, spaced-repetition scheduling, 30 product mappings, 56 credited WebP photos, accessible modal behavior, and offline PWA paths."
 );

@@ -19,8 +19,14 @@
 - Search is fast across names and ingredients; category filters, clear, empty-state
   reset, and diacritic-insensitive search all work with visible result counts.
 - The Install control gives exact Safari Add-to-Home-Screen guidance and can be closed.
+- Study mode contains all 26 imported flashcard fronts and uses the audited recipe
+  records for every answer.
+- Again / Hard / Good / Easy show their next intervals, Again re-queues a card,
+  learning cards graduate, and review progress persists locally after reload.
+- Study dashboard, question, revealed answer, grading controls, completion summary,
+  empty-due state, and reset confirmation are usable at iPhone sizes.
 - Relative app-shell paths, the manifest, icons, service-worker scope, and all 56
-  visual assets work offline from a GitHub Pages-style subpath.
+  visual assets plus the Study modules work offline from a GitHub Pages-style subpath.
 - Desktop layout is balanced and retains readable card structure.
 - The site has no login, analytics, tracking scripts, or third-party runtime assets.
 
@@ -40,6 +46,16 @@
 | Offline | Load once, set browser offline, reload subpath, open bottle | Saved page, 26 recipes, drink photos, credits, and product reference remain visible |
 | Responsive | Inspect 390×844, 320×568, and 1440×900 | No clipping, overlap, or horizontal page scroll |
 | Motion | Trigger a category filter | Card entrance is restrained; reduced-motion rule exists |
+| App sections | Switch Recipes â†’ Study â†’ Recipes | Active section is obvious and the Study action is above the fold |
+| Study start/reveal | Start 26 due cards; reveal the answer | Question remains focused; answer is readable and uses the drink photo |
+| Study grades | Use Again, then three Easy grades; confirm the card returns | Four large grade targets and interval labels remain visible |
+| Learning graduation | Grade the returned learning card Good | The next Good interval changes to one day |
+| Study persistence | Grade cards, reload, inspect counts and streak | Dashboard reflects saved progress without layout shift |
+| Study completion | Complete a staged one-card queue | Grade breakdown and return action are clear |
+| Study reset | Dismiss once, then confirm | Progress is only erased after confirmation |
+| Study offline | Load once, go offline, reload `#study`, reveal an answer | Dashboard, card, photo, ingredients and grading controls remain available |
+| Study edge states | Stage no cards due; corrupt saved JSON | Start disables with next-due copy; damaged state recovers to a fresh deck |
 
 Exploratory checks: rapidly alternate search and filters; use a long ingredient query;
-inspect the densest build cards; and reload a direct hash URL while offline.
+inspect the densest build cards; switch sections mid-session; close a Study bottle
+reference; test no-due and corrupt-storage recovery; and reload a direct hash URL offline.
