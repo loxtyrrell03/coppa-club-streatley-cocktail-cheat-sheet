@@ -1,4 +1,5 @@
 import { drinks, products } from "./data.js";
+import { photoCredits } from "./photo-credits.js";
 
 const categoryNames = {
   all: "All drinks",
@@ -33,6 +34,8 @@ const elements = {
   bottleTitle: document.querySelector("#bottle-title"),
   bottleType: document.querySelector("#bottle-type"),
   bottleNote: document.querySelector("#bottle-note"),
+  bottleCredit: document.querySelector("#bottle-credit"),
+  bottleLicense: document.querySelector("#bottle-license"),
   offlineBanner: document.querySelector("#offline-banner")
 };
 
@@ -90,7 +93,7 @@ const productButtonMarkup = ({ productId, sourceName, measure = "", className = 
       data-product-id="${escapeHtml(productId)}"
       aria-haspopup="dialog"
       aria-controls="bottle-dialog"
-      aria-label="Open bottle reference for ${escapeHtml(combinedLabel)}"
+      aria-label="Open photo reference for ${escapeHtml(combinedLabel)}"
     >
       ${measure ? `<span class="measure">${escapeHtml(measure)}</span>` : ""}
       <span class="ingredient-copy">
@@ -115,6 +118,21 @@ const ingredientMarkup = (item) => {
   `;
 };
 
+const photoCreditMarkup = (credit) => {
+  if (!credit) return "";
+  return `
+    <figcaption class="photo-credit">
+      <a href="${escapeHtml(credit.sourceUrl)}" target="_blank" rel="noopener">
+        Photo: ${escapeHtml(credit.creator)}
+      </a>
+      <span aria-hidden="true">·</span>
+      <a href="${escapeHtml(credit.licenseUrl)}" target="_blank" rel="noopener">
+        ${escapeHtml(credit.license)}
+      </a>
+    </figcaption>
+  `;
+};
+
 const cardMarkup = (drink, index) => `
   <article class="recipe-card" style="--order: ${Math.min(index, 8)}" id="${escapeHtml(drink.id)}">
     <figure class="drink-visual">
@@ -132,6 +150,7 @@ const cardMarkup = (drink, index) => `
         </svg>
         <span>Recipe image unavailable</span>
       </div>
+      ${photoCreditMarkup(photoCredits.drinks[drink.id])}
     </figure>
 
     <div class="card-topline">
@@ -294,15 +313,22 @@ let lastBottleTrigger = null;
 function openBottleDialog(trigger) {
   const product = products[trigger.dataset.productId];
   if (!product) return;
+  const credit = photoCredits.products[product.id];
 
   lastBottleTrigger = trigger;
   delete elements.bottleImage.dataset.fallback;
   elements.bottleImage.src = product.image;
-  elements.bottleImage.alt = product.imageAlt;
+  elements.bottleImage.alt = credit
+    ? `${product.label}, ${product.type}. ${credit.note}. Photograph by ${credit.creator}.`
+    : product.imageAlt;
   elements.bottleTitle.textContent = product.label;
   elements.bottleType.textContent = product.type;
   elements.bottleNote.textContent =
-    "Original labelled reference illustration — no unlicensed product pack shot is used.";
+    credit?.note ?? "Photographic bottle or ingredient reference.";
+  elements.bottleCredit.href = credit?.sourceUrl ?? product.sourceUrl;
+  elements.bottleCredit.textContent = credit ? `Photo: ${credit.creator}` : "Product reference";
+  elements.bottleLicense.href = credit?.licenseUrl ?? product.sourceUrl;
+  elements.bottleLicense.textContent = credit?.license ?? "Source";
   elements.bottleDialog.showModal();
   history.pushState(
     { coppaBottle: product.id },

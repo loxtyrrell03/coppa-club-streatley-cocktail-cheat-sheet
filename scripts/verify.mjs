@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import { drinks, products } from "../data.js";
+import { photoCredits } from "../photo-credits.js";
 
 const expectedNames = [
   "Pornstar Martini",
@@ -195,15 +196,34 @@ const assets = JSON.parse(assetManifestText.match(/=\s*(\[[\s\S]*\]);/)[1]);
 assert.equal(assets.length, 56, "All 26 drink and 30 bottle visuals must be cached.");
 assert.equal(new Set(assets).size, 56, "Cached visual paths must be unique.");
 
+let totalImageBytes = 0;
 for (const relativePath of assets) {
   const assetUrl = new URL(`../${relativePath}`, import.meta.url);
-  const [assetText, assetStats] = await Promise.all([
-    readFile(assetUrl, "utf8"),
+  const [assetBytes, assetStats] = await Promise.all([
+    readFile(assetUrl),
     stat(assetUrl)
   ]);
-  assert.match(assetText, /^<svg/, `${relativePath} is not an SVG.`);
-  assert.match(assetText, /<title/, `${relativePath} lacks an accessible title.`);
-  assert.ok(assetStats.size < 30_000, `${relativePath} is not suitably optimized.`);
+  assert.match(relativePath, /\.webp$/, `${relativePath} is not a WebP photo.`);
+  assert.equal(assetBytes.subarray(0, 4).toString("ascii"), "RIFF", `${relativePath} is not RIFF.`);
+  assert.equal(assetBytes.subarray(8, 12).toString("ascii"), "WEBP", `${relativePath} is not WebP.`);
+  assert.ok(assetStats.size < 150_000, `${relativePath} is not suitably optimized.`);
+  totalImageBytes += assetStats.size;
+}
+assert.ok(totalImageBytes < 3_500_000, "The offline photo pack is too large.");
+
+assert.equal(Object.keys(photoCredits.drinks).length, 26, "Every drink needs a photo credit.");
+assert.equal(
+  Object.keys(photoCredits.products).length,
+  30,
+  "Every bottle/ingredient reference needs a photo credit."
+);
+for (const credit of [
+  ...Object.values(photoCredits.drinks),
+  ...Object.values(photoCredits.products)
+]) {
+  assert.match(credit.sourceUrl, /^https:\/\//, `${credit.id} needs a source URL.`);
+  assert.match(credit.licenseUrl, /^https:\/\//, `${credit.id} needs a licence URL.`);
+  assert.ok(credit.creator, `${credit.id} needs a creator credit.`);
 }
 
 const [html, manifestText, worker, css, app, sourceAudit] = await Promise.all([
@@ -226,6 +246,7 @@ assert.match(html, /id="bottle-dialog"/, "The bottle dialog is missing.");
 assert.doesNotMatch(html, /(?:href|src)="\//, "Root-relative assets break project Pages.");
 assert.match(worker, /self\.registration\.scope/, "Service worker must derive the Pages base path.");
 assert.match(worker, /asset-manifest\.js/, "The service worker must precache visual assets.");
+assert.match(worker, /photo-credits\.js/, "Offline photo credits must be precached.");
 assert.match(worker, /cache: "reload"/, "Updated releases must refresh precached assets.");
 assert.match(app, /history\.pushState/, "Bottle dialog must support browser-back dismissal.");
 assert.match(app, /addEventListener\("cancel"/, "Bottle dialog must support Escape.");
@@ -233,8 +254,12 @@ assert.match(app, /event\.key !== "Tab"/, "Bottle dialog must contain keyboard f
 assert.match(app, /lastBottleTrigger\?\.focus/, "Dialog close must restore focus.");
 assert.match(css, /min-height: 3\.6rem/, "Large ingredient touch targets must be retained.");
 assert.match(css, /prefers-reduced-motion/, "Reduced-motion support must be retained.");
-assert.match(sourceAudit, /do not provide a\s+licence/, "The image-rights decision must be documented.");
+assert.match(
+  sourceAudit,
+  /Pexels licence|Creative Commons/,
+  "The licensed-photo policy must be documented."
+);
 
 console.log(
-  "Verified 26 source-audited recipes, 30 exact bottle mappings, 56 optimized visuals, accessible modal behavior, and offline PWA paths."
+  "Verified 26 source-audited recipes, 30 product mappings, 56 credited WebP photos, accessible modal behavior, and offline PWA paths."
 );

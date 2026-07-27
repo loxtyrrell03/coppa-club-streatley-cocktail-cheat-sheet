@@ -121,6 +121,7 @@
     <footer>
       <p>Quick reference only · No login · No tracking</p>
       <p>Revised source dated 23 July 2026</p>
+      <p>Licensed photos credited on every image</p>
     </footer>
 
     <dialog class="install-dialog" id="install-dialog" aria-labelledby="install-title">
@@ -163,18 +164,18 @@
       class="bottle-dialog"
       id="bottle-dialog"
       aria-labelledby="bottle-title"
-      aria-describedby="bottle-type bottle-note"
+      aria-describedby="bottle-type bottle-note bottle-credit-row"
     >
       <div class="dialog-top bottle-dialog__top">
         <div>
-          <p class="eyebrow">Tap-to-view bottle reference</p>
+          <p class="eyebrow">Bottle / ingredient photo</p>
           <h2 id="bottle-title">Product name</h2>
         </div>
         <button
           class="dialog-close"
           id="bottle-close"
           type="button"
-          aria-label="Close bottle reference"
+          aria-label="Close photo reference"
         >
           <svg aria-hidden="true" viewBox="0 0 24 24">
             <path d="m6 6 12 12M18 6 6 18" />
@@ -192,7 +193,12 @@
       </div>
       <p class="bottle-dialog__type" id="bottle-type"></p>
       <p class="bottle-dialog__note" id="bottle-note"></p>
-      <button class="dialog-done" id="bottle-done" type="button">Close bottle reference</button>
+      <p class="bottle-dialog__credit" id="bottle-credit-row">
+        <a id="bottle-credit" href="#" target="_blank" rel="noopener">Photo source</a>
+        <span aria-hidden="true">·</span>
+        <a id="bottle-license" href="#" target="_blank" rel="noopener">Licence</a>
+      </p>
+      <button class="dialog-done" id="bottle-done" type="button">Close photo reference</button>
     </dialog>
 
     <noscript>

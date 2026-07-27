@@ -5,18 +5,30 @@ Summer 2026**, dated 23 July 2026. Cocktail builds were transcribed from pages 2
 Numbered cocktail measures are ml; words such as `top`, `splash` and `dashes` remain
 as printed.
 
-## Image policy
+## Photography policy
 
 [Coppa Club's public website](https://www.coppaclub.co.uk/) and
 [booking terms](https://www.coppaclub.co.uk/terms-and-conditions) do not provide a
 licence to republish its menu photography. Product manufacturers' public pages
 identify their products, but their bottle pack shots likewise carry no explicit
-reusable licence. The app therefore does not copy either set of photographs.
+general reuse licence. The app therefore does not scrape or republish those assets.
 
-All 26 drink images and all 30 bottle-reference images are original, deterministic
-SVG illustrations created for this project. Bottle references are intentionally
-generic silhouettes labelled with the exact source product and verified
-plain-language type. They do not imitate official pack shots or trade dress.
+All 26 drink-card images and all 30 bottle/ingredient references are locally stored,
+optimized photographs with a defensible reuse basis: the
+[Pexels licence](https://www.pexels.com/license/), Creative Commons attribution
+licences, CC0, or the Public Domain Mark. The source page, creator, licence, and
+licence URL for every file are recorded in
+[`PHOTO_CREDITS.json`](./PHOTO_CREDITS.json) and displayed inside the app.
+
+Drink photographs were manually audited against their source serving family:
+Coupe/Martini, Rocks, Highball, or large wine glass. They are representative
+serving photographs for training and are not claimed to be official Coppa Club
+photographs of proprietary recipes.
+
+Eleven product taps use a correctly matched, reusable product photograph. Where a
+correct reusable pack shot could not be found, the modal uses a real
+ingredient/category photograph and says **exact bottle not shown**. No tap target
+uses a different brand's bottle as a substitute.
 
 ## Product-type references
 

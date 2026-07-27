@@ -10,8 +10,8 @@ An iPhone-first, installable cocktail reference built from the revised **23 July
 ## What is included
 
 - All 26 recipes from source pages 2–5
-- A distinct, original illustration for every drink
-- Tappable branded ingredients with 30 labelled bottle references
+- Licensed cocktail photography matched to the correct glass family
+- Tappable branded ingredients with 30 real bottle/ingredient photo references
 - Exact source ingredient wording plus verified plain-language product types
 - Fast name and ingredient search
 - Coupe/Martini, Rocks, Highball, and Spritz filters
@@ -19,8 +19,9 @@ An iPhone-first, installable cocktail reference built from the revised **23 July
 - Offline caching and iPhone Home Screen metadata
 - No account, analytics, cookies, or tracking
 
-The product-type evidence, image-rights decision, and two preserved source
-ambiguities are documented in [PRODUCT_SOURCES.md](./PRODUCT_SOURCES.md).
+The product-type evidence, photography policy, and two preserved source ambiguities
+are documented in [PRODUCT_SOURCES.md](./PRODUCT_SOURCES.md). Per-image creator,
+source, and licence records are in [PHOTO_CREDITS.json](./PHOTO_CREDITS.json).
 
 Numbered cocktail measures are **ml**. Written dashes, splashes and tops remain as
 shown in the source. These are reconstructed working specs; the live Streatley bar
@@ -41,11 +42,13 @@ Then open
 npm test
 ```
 
-To regenerate the original SVG visuals and offline asset manifest:
+To re-fetch and optimize the licensed photo pack:
 
 ```powershell
-npm run visuals
+npm run photos
 ```
+
+The source list is intentionally curated; review any source change before running it.
 
 ## iPhone installation
 

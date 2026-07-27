@@ -2,8 +2,8 @@ const bottle = (id, label, type, sourceUrl = "") => ({
   id,
   label,
   type,
-  image: `./images/bottles/${id}.svg`,
-  imageAlt: `Original illustrated bottle reference for ${label}, ${type}.`,
+  image: `./images/bottles/${id}.webp`,
+  imageAlt: `Photographic bottle or ingredient reference for ${label}, ${type}.`,
   sourceUrl
 });
 
@@ -180,7 +180,7 @@ const ingredient = (measure, sourceName, displayName = sourceName, productId = "
   productId
 });
 
-const image = (id) => `./images/drinks/${id}.svg`;
+const image = (id) => `./images/drinks/${id}.webp`;
 
 export const drinks = [
   {
@@ -193,7 +193,7 @@ export const drinks = [
     ice: "No ice",
     image: image("pornstar-martini"),
     imageAlt:
-      "Illustration of a golden Pornstar Martini in a coupe, with passion fruit and a side shot.",
+      "Representative photograph of a golden Pornstar Martini in a coupe, with passion fruit and a side shot.",
     build: [
       ingredient("50", "Absolut", "Absolut vodka", "absolut"),
       ingredient("25", "passion fruit"),
@@ -214,7 +214,7 @@ export const drinks = [
     glass: "Coupe",
     ice: "No ice",
     image: image("espresso-martini"),
-    imageAlt: "Illustration of a dark Espresso Martini in a coupe with three coffee beans.",
+    imageAlt: "Representative photograph of a dark Espresso Martini in a coupe with three coffee beans.",
     build: [
       ingredient(
         "50",
@@ -237,7 +237,7 @@ export const drinks = [
     glass: "Coupe",
     ice: "No ice",
     image: image("hibiscus-rose-delight"),
-    imageAlt: "Illustration of a sparkling ruby Hibiscus & Rose Delight in a coupe.",
+    imageAlt: "Representative photograph of a sparkling ruby Hibiscus & Rose Delight in a coupe.",
     build: [
       ingredient(
         "25",
@@ -264,7 +264,7 @@ export const drinks = [
     glass: "Coupe",
     ice: "No ice",
     image: image("lychee-rose-martini"),
-    imageAlt: "Illustration of a pale pink Lychee & Rose Martini in a chilled coupe.",
+    imageAlt: "Representative photograph of a pale pink Lychee & Rose Martini in a chilled coupe.",
     build: [
       ingredient("50", "Bombay Sapphire", "Bombay Sapphire gin", "bombay-sapphire"),
       ingredient("25", "lychee"),
@@ -285,7 +285,7 @@ export const drinks = [
     tags: ["0%", "alcohol-free", "mocktail"],
     image: image("popstar-martini"),
     imageAlt:
-      "Illustration of a bright alcohol-free Popstar Martini in a coupe with a sparkling side shot.",
+      "Representative photograph of a bright alcohol-free Popstar Martini in a coupe with a sparkling side shot.",
     build: [
       ingredient("25", "passion fruit"),
       ingredient("25", "pineapple"),
@@ -310,7 +310,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Cubed ice",
     image: image("margarita"),
-    imageAlt: "Illustration of a pale lime Margarita over cubed ice with a half salt rim.",
+    imageAlt: "Representative photograph of a pale lime Margarita over cubed ice with a half salt rim.",
     build: [
       ingredient("50", "Altos Plata", "Altos Plata tequila", "altos-plata"),
       ingredient("25", "Cointreau", "Cointreau orange liqueur", "cointreau"),
@@ -329,7 +329,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Cubed ice",
     image: image("negroni"),
-    imageAlt: "Illustration of a deep red Negroni over ice with a curled orange peel.",
+    imageAlt: "Representative photograph of a deep red Negroni over ice with a curled orange peel.",
     build: [
       ingredient("25", "Beefeater", "Beefeater gin", "beefeater"),
       ingredient("25", "Campari", "Campari bitter aperitif", "campari"),
@@ -347,7 +347,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Cubed ice",
     image: image("old-fashioned"),
-    imageAlt: "Illustration of an amber Old Fashioned over a large ice cube with orange peel.",
+    imageAlt: "Representative photograph of an amber Old Fashioned over a large ice cube with orange peel.",
     build: [
       ingredient("50", "Buffalo Trace", "Buffalo Trace bourbon whiskey", "buffalo-trace"),
       ingredient("5", "demerara"),
@@ -365,7 +365,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Cubed ice",
     image: image("peach-elderflower-mai-tai"),
-    imageAlt: "Illustration of a peach-coloured Mai Tai over ice with pineapple leaves.",
+    imageAlt: "Representative photograph of a peach-coloured Mai Tai over ice with pineapple leaves.",
     build: [
       ingredient("50", "Havana 7", "Havana 7 aged rum", "havana-7"),
       ingredient("20", "peach"),
@@ -386,7 +386,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Crushed/cubed",
     image: image("rhubarb-raspberry-bramble"),
-    imageAlt: "Illustration of a ruby Rhubarb & Raspberry Bramble over crushed ice.",
+    imageAlt: "Representative photograph of a ruby Rhubarb & Raspberry Bramble over crushed ice.",
     build: [
       ingredient("50", "Plymouth", "Plymouth gin", "plymouth"),
       ingredient("20", "lemon"),
@@ -404,7 +404,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Cubed ice",
     image: image("green-chilli-mango-margarita"),
-    imageAlt: "Illustration of a vivid mango Margarita over ice with a green chilli.",
+    imageAlt: "Representative photograph of a vivid mango Margarita over ice with a green chilli.",
     build: [
       ingredient("50", "Altos Plata", "Altos Plata tequila", "altos-plata"),
       ingredient("25", "mango"),
@@ -422,7 +422,7 @@ export const drinks = [
     glass: "Rocks",
     ice: "Cubed ice",
     image: image("rum-fashioned"),
-    imageAlt: "Illustration of a rich amber Rum Fashioned over ice with banana and pineapple.",
+    imageAlt: "Representative photograph of a rich amber Rum Fashioned over ice with banana and pineapple.",
     build: [
       ingredient(
         "50",
@@ -450,7 +450,7 @@ export const drinks = [
     glass: "Highball",
     ice: "Crushed ice",
     image: image("mojito"),
-    imageAlt: "Illustration of a tall Mojito packed with crushed ice, mint and lime.",
+    imageAlt: "Representative photograph of a tall Mojito packed with crushed ice, mint and lime.",
     build: [
       ingredient("50", "Havana 3", "Havana 3 white rum", "havana-3"),
       ingredient("25", "lime"),
@@ -470,7 +470,7 @@ export const drinks = [
     glass: "Highball",
     ice: "Cubed ice",
     image: image("british-orchard-highball"),
-    imageAlt: "Illustration of a blush British Orchard Highball over cubed ice.",
+    imageAlt: "Representative photograph of a blush British Orchard Highball over cubed ice.",
     build: [
       ingredient(
         "50",
@@ -494,7 +494,7 @@ export const drinks = [
     glass: "Highball",
     ice: "Cubed ice",
     image: image("spiced-pina-colada"),
-    imageAlt: "Illustration of a creamy Spiced Piña Colada with pineapple and green chilli.",
+    imageAlt: "Representative photograph of a creamy Spiced Piña Colada with pineapple and green chilli.",
     build: [
       ingredient("50", "Havana Spiced", "Havana Spiced rum", "havana-spiced"),
       ingredient("50", "pineapple"),
@@ -515,7 +515,7 @@ export const drinks = [
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
     image: image("acv-colada"),
-    imageAlt: "Illustration of a creamy alcohol-free ACV-Colada with apple and pineapple.",
+    imageAlt: "Representative photograph of a creamy alcohol-free ACV-Colada with apple and pineapple.",
     build: [
       ingredient("10", "apple-cider vinegar"),
       ingredient("20", "lime"),
@@ -535,7 +535,7 @@ export const drinks = [
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
     image: image("blazing-pineapple-buck"),
-    imageAlt: "Illustration of a fiery golden Blazing Pineapple Buck with ginger bubbles.",
+    imageAlt: "Representative photograph of a fiery golden Blazing Pineapple Buck with ginger bubbles.",
     build: [
       ingredient(
         "50",
@@ -559,7 +559,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("grapefruit-thyme-aperol"),
-    imageAlt: "Illustration of a coral Grapefruit & Thyme Aperol spritz with bubbles.",
+    imageAlt: "Representative photograph of a coral Grapefruit & Thyme Aperol spritz with bubbles.",
     build: [
       ingredient("50", "Aperol", "Aperol aperitif", "aperol"),
       ingredient("25", "grapefruit sherbet"),
@@ -578,7 +578,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("pear-pomegranate-hugo"),
-    imageAlt: "Illustration of a rose-coloured Pear & Pomegranate Hugo with mint.",
+    imageAlt: "Representative photograph of a rose-coloured Pear & Pomegranate Hugo with mint.",
     build: [
       ingredient(
         "25",
@@ -604,7 +604,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("limoncello-lavender"),
-    imageAlt: "Illustration of a pale yellow Limoncello & Lavender spritz with lemon.",
+    imageAlt: "Representative photograph of a pale yellow Limoncello & Lavender spritz with lemon.",
     build: [
       ingredient("50", "Limoncello", "Limoncello lemon liqueur", "limoncello"),
       ingredient(
@@ -630,7 +630,7 @@ export const drinks = [
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
     image: image("rhubarb-orange-zero"),
-    imageAlt: "Illustration of an alcohol-free rhubarb and orange spritz with bubbles.",
+    imageAlt: "Representative photograph of an alcohol-free rhubarb and orange spritz with bubbles.",
     build: [
       ingredient(
         "25",
@@ -658,7 +658,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("aperol-spritz"),
-    imageAlt: "Illustration of a bright orange Aperol Spritz with bubbles and orange.",
+    imageAlt: "Representative photograph of a bright orange Aperol Spritz with bubbles and orange.",
     build: [
       ingredient("50", "Aperol", "Aperol aperitif", "aperol"),
       ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
@@ -676,7 +676,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("hugo-spritz"),
-    imageAlt: "Illustration of a pale Hugo Spritz with mint, lime and fine bubbles.",
+    imageAlt: "Representative photograph of a pale Hugo Spritz with mint, lime and fine bubbles.",
     build: [
       ingredient(
         "25",
@@ -699,7 +699,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("limoncello-spritz"),
-    imageAlt: "Illustration of a lemon-yellow Limoncello Spritz with a lemon wheel.",
+    imageAlt: "Representative photograph of a lemon-yellow Limoncello Spritz with a lemon wheel.",
     build: [
       ingredient(
         "50",
@@ -722,7 +722,7 @@ export const drinks = [
     glass: "Large wine glass",
     ice: "Fill with ice",
     image: image("sarti-spritz"),
-    imageAlt: "Illustration of a vivid pink Sarti Spritz with bubbles and a lime slice.",
+    imageAlt: "Representative photograph of a vivid pink Sarti Spritz with bubbles and a lime slice.",
     build: [
       ingredient("60", "Sarti Rosa", "Sarti Rosa aperitif", "sarti-rosa"),
       ingredient("90", "Prosecco", "Prosecco sparkling wine", "prosecco"),
@@ -742,7 +742,7 @@ export const drinks = [
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
     image: image("floral-spritz"),
-    imageAlt: "Illustration of a ruby alcohol-free Floral Spritz with fine bubbles.",
+    imageAlt: "Representative photograph of a ruby alcohol-free Floral Spritz with fine bubbles.",
     build: [
       ingredient(
         "25",
@@ -763,3 +763,7 @@ export const drinks = [
       "The revised source places this method in the finish column and does not specify a garnish."
   }
 ];
+
+for (const drink of drinks) {
+  drink.imageAlt = `Representative cocktail photograph for ${drink.name}, matched to the ${drink.glass} serving family.`;
+}

@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node scripts/server.mjs",
     "test": "node scripts/verify.mjs",
-    "visuals": "node scripts/create_visuals.mjs"
+    "photos": "python scripts/fetch_photos.py",
+    "credits": "python scripts/fetch_photos.py --metadata-only"
   },
   "devDependencies": {
     "playwright": "^1.62.0"
