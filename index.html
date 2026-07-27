@@ -60,7 +60,7 @@
     </header>
 
     <div class="offline-banner" id="offline-banner" role="status" hidden>
-      Offline mode · saved recipes are ready
+      Offline mode · saved recipes and bottle references are ready
     </div>
 
     <main>
@@ -78,7 +78,7 @@
               inputmode="search"
               enterkeyhint="search"
               autocomplete="off"
-              placeholder="Search drink or ingredient"
+              placeholder="Drink or ingredient"
             />
             <button class="clear-search" id="clear-search" type="button" hidden>
               Clear
@@ -157,6 +157,42 @@
       </ol>
       <p class="install-note">Once opened, the recipe list also works without a signal.</p>
       <button class="dialog-done" id="dialog-done" type="button">Got it</button>
+    </dialog>
+
+    <dialog
+      class="bottle-dialog"
+      id="bottle-dialog"
+      aria-labelledby="bottle-title"
+      aria-describedby="bottle-type bottle-note"
+    >
+      <div class="dialog-top bottle-dialog__top">
+        <div>
+          <p class="eyebrow">Tap-to-view bottle reference</p>
+          <h2 id="bottle-title">Product name</h2>
+        </div>
+        <button
+          class="dialog-close"
+          id="bottle-close"
+          type="button"
+          aria-label="Close bottle reference"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="bottle-dialog__image-wrap">
+        <img
+          id="bottle-image"
+          src="./icons/icon.svg"
+          alt=""
+          width="600"
+          height="780"
+        />
+      </div>
+      <p class="bottle-dialog__type" id="bottle-type"></p>
+      <p class="bottle-dialog__note" id="bottle-note"></p>
+      <button class="dialog-done" id="bottle-done" type="button">Close bottle reference</button>
     </dialog>
 
     <noscript>

@@ -1,3 +1,187 @@
+const bottle = (id, label, type, sourceUrl = "") => ({
+  id,
+  label,
+  type,
+  image: `./images/bottles/${id}.svg`,
+  imageAlt: `Original illustrated bottle reference for ${label}, ${type}.`,
+  sourceUrl
+});
+
+export const products = {
+  absolut: bottle("absolut", "Absolut", "vodka", "https://www.absolut.com/en/products/absolut-vodka/"),
+  "absolut-vanilla": bottle(
+    "absolut-vanilla",
+    "Absolut Vanilla",
+    "vanilla-flavoured vodka",
+    "https://www.absolut.com/en/products/absolut-vanilia/"
+  ),
+  kahlua: bottle(
+    "kahlua",
+    "Kahlúa",
+    "coffee liqueur",
+    "https://www.kahlua.com/en/products/original-coffee-liqueur/"
+  ),
+  "crossip-pure-hibiscus": bottle(
+    "crossip-pure-hibiscus",
+    "Crossip Pure Hibiscus",
+    "alcohol-free spirit",
+    "https://www.crossipdrinks.com/pages/faq"
+  ),
+  "veuve-clicquot": bottle(
+    "veuve-clicquot",
+    "Veuve Clicquot",
+    "Champagne",
+    "https://www.veuveclicquot.com/en-int/our-champagnes/yellow-label"
+  ),
+  "bombay-sapphire": bottle(
+    "bombay-sapphire",
+    "Bombay Sapphire",
+    "gin",
+    "https://www.bombaysapphire.com/products/bombay-sapphire/"
+  ),
+  "zero-sparkling": bottle(
+    "zero-sparkling",
+    "0% sparkling",
+    "alcohol-free sparkling drink · brand not specified"
+  ),
+  "altos-plata": bottle(
+    "altos-plata",
+    "Altos Plata",
+    "tequila",
+    "https://olmecaaltos.com/olmeca-altos-plata/"
+  ),
+  cointreau: bottle(
+    "cointreau",
+    "Cointreau",
+    "orange liqueur",
+    "https://www.cointreau.com/us/en/what-cointreau"
+  ),
+  beefeater: bottle(
+    "beefeater",
+    "Beefeater",
+    "London dry gin",
+    "https://www.beefeatergin.com/en-gb/our-gins/london-dry-gin/"
+  ),
+  campari: bottle(
+    "campari",
+    "Campari",
+    "bitter aperitif",
+    "https://www.campari.com/our-products/campari/"
+  ),
+  "martini-rubino": bottle(
+    "martini-rubino",
+    "Martini Rubino",
+    "vermouth",
+    "https://www.martini.com/products/riserva-speciale-rubino/"
+  ),
+  "buffalo-trace": bottle(
+    "buffalo-trace",
+    "Buffalo Trace",
+    "bourbon whiskey",
+    "https://www.buffalotracedistillery.com/our-brands/buffalo-trace/"
+  ),
+  "havana-7": bottle(
+    "havana-7",
+    "Havana 7",
+    "aged rum",
+    "https://havana-club.com/en-gb/our-rums/"
+  ),
+  plymouth: bottle(
+    "plymouth",
+    "Plymouth",
+    "gin",
+    "https://www.plymouthgin.com/en/product/plymouth-gin/"
+  ),
+  "discarded-banana-rum": bottle(
+    "discarded-banana-rum",
+    "Discarded Banana Rum",
+    "banana rum",
+    "https://discardedspirits.com/products/discarded-rum"
+  ),
+  "crossip-blazing-pineapple": bottle(
+    "crossip-blazing-pineapple",
+    "Crossip Blazing Pineapple",
+    "alcohol-free spirit",
+    "https://www.crossipdrinks.com/products/blazing-pineapple"
+  ),
+  "havana-3": bottle(
+    "havana-3",
+    "Havana 3",
+    "white rum",
+    "https://havana-club.com/en-gb/our-rums/"
+  ),
+  "compass-box-orchard-house": bottle(
+    "compass-box-orchard-house",
+    "Compass Box Orchard House",
+    "blended malt Scotch whisky",
+    "https://www.compassboxwhisky.com/products/orchard-house"
+  ),
+  "havana-spiced": bottle(
+    "havana-spiced",
+    "Havana Spiced",
+    "spiced rum",
+    "https://havana-club.com/en/our-rum/cuban-spiced/"
+  ),
+  aperol: bottle(
+    "aperol",
+    "Aperol",
+    "aperitif",
+    "https://www.aperol.com/our-products/aperol/"
+  ),
+  prosecco: bottle("prosecco", "Prosecco", "sparkling wine · brand not specified"),
+  "mondoro-elderflower": bottle(
+    "mondoro-elderflower",
+    "Mondoro Elderflower",
+    "elderflower aperitif",
+    "https://www.diffordsguide.com/beer-wine-spirits/12366/mondoro-aperitivo-elderflower"
+  ),
+  limoncello: bottle("limoncello", "Limoncello", "lemon liqueur · brand not specified"),
+  "monin-lavender": bottle(
+    "monin-lavender",
+    "MONIN Lavender Syrup",
+    "lavender syrup",
+    "https://monin1912.com/products/monin-lavender-syrup"
+  ),
+  "bristol-rhubarb-orange": bottle(
+    "bristol-rhubarb-orange",
+    "Bristol Syrup Co rhubarb-and-orange syrup",
+    "rhubarb-and-orange syrup",
+    "https://staustellbrewerywholesale.co.uk/soft/syrups/bristol-syrup-co-rhubarb-orange-spritz-syrup-1-750ml-glass-bottle/"
+  ),
+  "premium-zero-sparkling": bottle(
+    "premium-zero-sparkling",
+    "premium 0% sparkling",
+    "premium alcohol-free sparkling drink · brand not specified"
+  ),
+  "st-germain": bottle(
+    "st-germain",
+    "St-Germain",
+    "elderflower liqueur",
+    "https://www.stgermainliqueur.com/us/en"
+  ),
+  "pallini-limoncello": bottle(
+    "pallini-limoncello",
+    "Pallini Limoncello",
+    "lemon liqueur",
+    "https://pallini.com/en/prodotti-pallini/limoncello/"
+  ),
+  "sarti-rosa": bottle(
+    "sarti-rosa",
+    "Sarti Rosa",
+    "Italian aperitif",
+    "https://www.sartiaperitivo.com/"
+  )
+};
+
+const ingredient = (measure, sourceName, displayName = sourceName, productId = "") => ({
+  measure,
+  sourceName,
+  displayName,
+  productId
+});
+
+const image = (id) => `./images/drinks/${id}.svg`;
+
 export const drinks = [
   {
     id: "pornstar-martini",
@@ -7,13 +191,18 @@ export const drinks = [
     price: "£14.25",
     glass: "Coupe + shot",
     ice: "No ice",
+    image: image("pornstar-martini"),
+    imageAlt:
+      "Illustration of a golden Pornstar Martini in a coupe, with passion fruit and a side shot.",
     build: [
-      ["50", "Absolut"],
-      ["25", "passion fruit"],
-      ["10", "vanilla"],
-      ["25", "pineapple"]
+      ingredient("50", "Absolut", "Absolut vodka", "absolut"),
+      ingredient("25", "passion fruit"),
+      ingredient("10", "vanilla"),
+      ingredient("25", "pineapple")
     ],
-    method: "Shake hard; fine-strain. Serve Prosecco alongside.",
+    method: "Shake hard; fine-strain.",
+    serve: "Prosecco alongside",
+    serveProductId: "prosecco",
     finish: "Half passion fruit"
   },
   {
@@ -24,10 +213,17 @@ export const drinks = [
     price: "£14.25",
     glass: "Coupe",
     ice: "No ice",
+    image: image("espresso-martini"),
+    imageAlt: "Illustration of a dark Espresso Martini in a coupe with three coffee beans.",
     build: [
-      ["50", "Absolut Vanilla"],
-      ["25", "Kahlúa"],
-      ["25", "espresso"]
+      ingredient(
+        "50",
+        "Absolut Vanilla",
+        "Absolut Vanilla vodka",
+        "absolut-vanilla"
+      ),
+      ingredient("25", "Kahlúa", "Kahlúa coffee liqueur", "kahlua"),
+      ingredient("25", "espresso")
     ],
     method: "Shake very hard; fine-strain.",
     finish: "3 coffee beans"
@@ -40,10 +236,22 @@ export const drinks = [
     price: "£22.75",
     glass: "Coupe",
     ice: "No ice",
+    image: image("hibiscus-rose-delight"),
+    imageAlt: "Illustration of a sparkling ruby Hibiscus & Rose Delight in a coupe.",
     build: [
-      ["25", "Crossip Pure Hibiscus"],
-      ["10", "rose"],
-      ["100", "Veuve Clicquot"]
+      ingredient(
+        "25",
+        "Crossip Pure Hibiscus",
+        "Crossip Pure Hibiscus alcohol-free spirit",
+        "crossip-pure-hibiscus"
+      ),
+      ingredient("10", "rose"),
+      ingredient(
+        "100",
+        "Veuve Clicquot",
+        "Veuve Clicquot Champagne",
+        "veuve-clicquot"
+      )
     ],
     method: "Build gently; minimal stir."
   },
@@ -55,11 +263,13 @@ export const drinks = [
     price: "£13.75",
     glass: "Coupe",
     ice: "No ice",
+    image: image("lychee-rose-martini"),
+    imageAlt: "Illustration of a pale pink Lychee & Rose Martini in a chilled coupe.",
     build: [
-      ["50", "Bombay Sapphire"],
-      ["25", "lychee"],
-      ["10", "rose"],
-      ["20", "lemon"]
+      ingredient("50", "Bombay Sapphire", "Bombay Sapphire gin", "bombay-sapphire"),
+      ingredient("25", "lychee"),
+      ingredient("10", "rose"),
+      ingredient("20", "lemon")
     ],
     method: "Shake; fine-strain."
   },
@@ -73,14 +283,23 @@ export const drinks = [
     ice: "No ice",
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
+    image: image("popstar-martini"),
+    imageAlt:
+      "Illustration of a bright alcohol-free Popstar Martini in a coupe with a sparkling side shot.",
     build: [
-      ["25", "passion fruit"],
-      ["25", "pineapple"],
-      ["10", "vanilla"],
-      ["", "0% sparkling"]
+      ingredient("25", "passion fruit"),
+      ingredient("25", "pineapple"),
+      ingredient("10", "vanilla"),
+      ingredient(
+        "",
+        "0% sparkling",
+        "0% sparkling alcohol-free drink",
+        "zero-sparkling"
+      )
     ],
     method: "Shake; fine-strain.",
-    finish: "Serve 0% sparkling alongside"
+    serve: "0% sparkling alongside",
+    serveProductId: "zero-sparkling"
   },
   {
     id: "margarita",
@@ -90,11 +309,13 @@ export const drinks = [
     price: "£13.25",
     glass: "Rocks",
     ice: "Cubed ice",
+    image: image("margarita"),
+    imageAlt: "Illustration of a pale lime Margarita over cubed ice with a half salt rim.",
     build: [
-      ["50", "Altos Plata"],
-      ["25", "Cointreau"],
-      ["25", "lime"],
-      ["10", "agave"]
+      ingredient("50", "Altos Plata", "Altos Plata tequila", "altos-plata"),
+      ingredient("25", "Cointreau", "Cointreau orange liqueur", "cointreau"),
+      ingredient("25", "lime"),
+      ingredient("10", "agave")
     ],
     method: "Half salt rim; shake; strain over ice.",
     finish: "Lime"
@@ -107,10 +328,12 @@ export const drinks = [
     price: "£14.25",
     glass: "Rocks",
     ice: "Cubed ice",
+    image: image("negroni"),
+    imageAlt: "Illustration of a deep red Negroni over ice with a curled orange peel.",
     build: [
-      ["25", "Beefeater"],
-      ["25", "Campari"],
-      ["25", "Martini Rubino"]
+      ingredient("25", "Beefeater", "Beefeater gin", "beefeater"),
+      ingredient("25", "Campari", "Campari bitter aperitif", "campari"),
+      ingredient("25", "Martini Rubino", "Martini Rubino vermouth", "martini-rubino")
     ],
     method: "Stir over ice.",
     finish: "Orange peel"
@@ -123,10 +346,12 @@ export const drinks = [
     price: "£13.75",
     glass: "Rocks",
     ice: "Cubed ice",
+    image: image("old-fashioned"),
+    imageAlt: "Illustration of an amber Old Fashioned over a large ice cube with orange peel.",
     build: [
-      ["50", "Buffalo Trace"],
-      ["5", "demerara"],
-      ["2–3 dashes", "bitters"]
+      ingredient("50", "Buffalo Trace", "Buffalo Trace bourbon whiskey", "buffalo-trace"),
+      ingredient("5", "demerara"),
+      ingredient("2–3 dashes", "bitters")
     ],
     method: "Stir over ice until chilled/diluted.",
     finish: "Orange peel"
@@ -139,15 +364,18 @@ export const drinks = [
     price: "£14.25",
     glass: "Rocks",
     ice: "Cubed ice",
+    image: image("peach-elderflower-mai-tai"),
+    imageAlt: "Illustration of a peach-coloured Mai Tai over ice with pineapple leaves.",
     build: [
-      ["50", "Havana 7"],
-      ["20", "peach"],
-      ["10", "elderflower"],
-      ["20", "lime"],
-      ["30", "pineapple"],
-      ["", "bitters"]
+      ingredient("50", "Havana 7", "Havana 7 aged rum", "havana-7"),
+      ingredient("20", "peach"),
+      ingredient("10", "elderflower"),
+      ingredient("20", "lime"),
+      ingredient("30", "pineapple"),
+      ingredient("", "bitters")
     ],
-    method: "Shake; strain over ice."
+    method: "Shake; strain over ice.",
+    ambiguity: "The revised source lists bitters without a quantity."
   },
   {
     id: "rhubarb-raspberry-bramble",
@@ -157,11 +385,13 @@ export const drinks = [
     price: "£14.75",
     glass: "Rocks",
     ice: "Crushed/cubed",
+    image: image("rhubarb-raspberry-bramble"),
+    imageAlt: "Illustration of a ruby Rhubarb & Raspberry Bramble over crushed ice.",
     build: [
-      ["50", "Plymouth"],
-      ["20", "lemon"],
-      ["15", "raspberry"],
-      ["10", "rhubarb"]
+      ingredient("50", "Plymouth", "Plymouth gin", "plymouth"),
+      ingredient("20", "lemon"),
+      ingredient("15", "raspberry"),
+      ingredient("10", "rhubarb")
     ],
     method: "Shake; pour/strain over ice."
   },
@@ -173,11 +403,13 @@ export const drinks = [
     price: "£14.25",
     glass: "Rocks",
     ice: "Cubed ice",
+    image: image("green-chilli-mango-margarita"),
+    imageAlt: "Illustration of a vivid mango Margarita over ice with a green chilli.",
     build: [
-      ["50", "Altos Plata"],
-      ["25", "mango"],
-      ["25", "lime"],
-      ["10", "green chilli"]
+      ingredient("50", "Altos Plata", "Altos Plata tequila", "altos-plata"),
+      ingredient("25", "mango"),
+      ingredient("25", "lime"),
+      ingredient("10", "green chilli")
     ],
     method: "Shake; strain over ice."
   },
@@ -189,11 +421,23 @@ export const drinks = [
     price: "£14.75",
     glass: "Rocks",
     ice: "Cubed ice",
+    image: image("rum-fashioned"),
+    imageAlt: "Illustration of a rich amber Rum Fashioned over ice with banana and pineapple.",
     build: [
-      ["50", "Discarded Banana Rum"],
-      ["25", "Crossip Blazing Pineapple"],
-      ["5", "demerara"],
-      ["2 dashes", "bitters"]
+      ingredient(
+        "50",
+        "Discarded Banana Rum",
+        "Discarded Banana Rum",
+        "discarded-banana-rum"
+      ),
+      ingredient(
+        "25",
+        "Crossip Blazing Pineapple",
+        "Crossip Blazing Pineapple alcohol-free spirit",
+        "crossip-blazing-pineapple"
+      ),
+      ingredient("5", "demerara"),
+      ingredient("2 dashes", "bitters")
     ],
     method: "Stir over ice."
   },
@@ -205,12 +449,14 @@ export const drinks = [
     price: "£14.25",
     glass: "Highball",
     ice: "Crushed ice",
+    image: image("mojito"),
+    imageAlt: "Illustration of a tall Mojito packed with crushed ice, mint and lime.",
     build: [
-      ["50", "Havana 3"],
-      ["25", "lime"],
-      ["15", "sugar"],
-      ["", "mint"],
-      ["", "soda"]
+      ingredient("50", "Havana 3", "Havana 3 white rum", "havana-3"),
+      ingredient("25", "lime"),
+      ingredient("15", "sugar"),
+      ingredient("", "mint"),
+      ingredient("", "soda")
     ],
     method: "Churn with crushed ice; top soda; cap with more crushed ice.",
     finish: "Mint bouquet + lime"
@@ -223,12 +469,19 @@ export const drinks = [
     price: "£14.75",
     glass: "Highball",
     ice: "Cubed ice",
+    image: image("british-orchard-highball"),
+    imageAlt: "Illustration of a blush British Orchard Highball over cubed ice.",
     build: [
-      ["50", "Compass Box Orchard House"],
-      ["10", "jasmine"],
-      ["25", "cranberry"],
-      ["15", "lime"],
-      ["", "soda"]
+      ingredient(
+        "50",
+        "Compass Box Orchard House",
+        "Compass Box Orchard House Scotch whisky",
+        "compass-box-orchard-house"
+      ),
+      ingredient("10", "jasmine"),
+      ingredient("25", "cranberry"),
+      ingredient("15", "lime"),
+      ingredient("", "soda")
     ],
     method: "Build over ice; top soda; gentle stir."
   },
@@ -240,12 +493,14 @@ export const drinks = [
     price: "£13.25",
     glass: "Highball",
     ice: "Cubed ice",
+    image: image("spiced-pina-colada"),
+    imageAlt: "Illustration of a creamy Spiced Piña Colada with pineapple and green chilli.",
     build: [
-      ["50", "Havana Spiced"],
-      ["50", "pineapple"],
-      ["25", "coconut"],
-      ["20", "lime"],
-      ["5", "green chilli"]
+      ingredient("50", "Havana Spiced", "Havana Spiced rum", "havana-spiced"),
+      ingredient("50", "pineapple"),
+      ingredient("25", "coconut"),
+      ingredient("20", "lime"),
+      ingredient("5", "green chilli")
     ],
     method: "Shake hard; strain over ice."
   },
@@ -259,11 +514,13 @@ export const drinks = [
     ice: "Cubed ice",
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
+    image: image("acv-colada"),
+    imageAlt: "Illustration of a creamy alcohol-free ACV-Colada with apple and pineapple.",
     build: [
-      ["10", "apple-cider vinegar"],
-      ["20", "lime"],
-      ["50", "pineapple"],
-      ["25", "coconut"]
+      ingredient("10", "apple-cider vinegar"),
+      ingredient("20", "lime"),
+      ingredient("50", "pineapple"),
+      ingredient("25", "coconut")
     ],
     method: "Shake; strain over ice."
   },
@@ -277,12 +534,19 @@ export const drinks = [
     ice: "Cubed ice",
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
+    image: image("blazing-pineapple-buck"),
+    imageAlt: "Illustration of a fiery golden Blazing Pineapple Buck with ginger bubbles.",
     build: [
-      ["50", "Crossip Blazing Pineapple"],
-      ["25", "mango"],
-      ["10", "ginger"],
-      ["10", "spiced-orange"],
-      ["", "ginger beer"]
+      ingredient(
+        "50",
+        "Crossip Blazing Pineapple",
+        "Crossip Blazing Pineapple alcohol-free spirit",
+        "crossip-blazing-pineapple"
+      ),
+      ingredient("25", "mango"),
+      ingredient("10", "ginger"),
+      ingredient("10", "spiced-orange"),
+      ingredient("", "ginger beer")
     ],
     method: "Build over ice; top ginger beer; gentle stir."
   },
@@ -292,15 +556,17 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13.50",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("grapefruit-thyme-aperol"),
+    imageAlt: "Illustration of a coral Grapefruit & Thyme Aperol spritz with bubbles.",
     build: [
-      ["50", "Aperol"],
-      ["25", "grapefruit sherbet"],
-      ["100", "Prosecco"],
-      ["25", "soda"]
+      ingredient("50", "Aperol", "Aperol aperitif", "aperol"),
+      ingredient("25", "grapefruit sherbet"),
+      ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("25", "soda")
     ],
-    method: "Build over ice: add still ingredients, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Grapefruit + thyme"
   },
   {
@@ -309,16 +575,23 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13.50",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("pear-pomegranate-hugo"),
+    imageAlt: "Illustration of a rose-coloured Pear & Pomegranate Hugo with mint.",
     build: [
-      ["25", "Mondoro Elderflower"],
-      ["25", "pear purée"],
-      ["10", "grenadine/pomegranate"],
-      ["100", "Prosecco"],
-      ["25", "soda"]
+      ingredient(
+        "25",
+        "Mondoro Elderflower",
+        "Mondoro Elderflower aperitif",
+        "mondoro-elderflower"
+      ),
+      ingredient("25", "pear purée"),
+      ingredient("10", "grenadine/pomegranate"),
+      ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("25", "soda")
     ],
-    method: "Build over ice: add still ingredients, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Mint / venue finish",
     note: "Use pear purée, not pear syrup."
   },
@@ -328,15 +601,22 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13.50",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("limoncello-lavender"),
+    imageAlt: "Illustration of a pale yellow Limoncello & Lavender spritz with lemon.",
     build: [
-      ["50", "Limoncello"],
-      ["10", "lavender Monin"],
-      ["100", "Prosecco"],
-      ["25", "soda"]
+      ingredient("50", "Limoncello", "Limoncello lemon liqueur", "limoncello"),
+      ingredient(
+        "10",
+        "lavender Monin",
+        "lavender MONIN syrup",
+        "monin-lavender"
+      ),
+      ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("25", "soda")
     ],
-    method: "Build over ice: add still ingredients, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Lemon"
   },
   {
@@ -345,15 +625,27 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£9.50",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
+    image: image("rhubarb-orange-zero"),
+    imageAlt: "Illustration of an alcohol-free rhubarb and orange spritz with bubbles.",
     build: [
-      ["25", "Bristol Syrup Co rhubarb-and-orange syrup"],
-      ["top", "premium 0% sparkling"]
+      ingredient(
+        "25",
+        "Bristol Syrup Co rhubarb-and-orange syrup",
+        "Bristol Syrup Co rhubarb-and-orange syrup",
+        "bristol-rhubarb-orange"
+      ),
+      ingredient(
+        "top",
+        "premium 0% sparkling",
+        "premium 0% sparkling alcohol-free drink",
+        "premium-zero-sparkling"
+      )
     ],
-    method: "Build over ice; top premium 0% sparkling; gentle stir.",
+    method: "Add the still ingredient, then premium 0% sparkling. Gentle stir.",
     finish: "Orange",
     note: "Use one Bristol Syrup Co rhubarb-and-orange syrup."
   },
@@ -363,14 +655,16 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("aperol-spritz"),
+    imageAlt: "Illustration of a bright orange Aperol Spritz with bubbles and orange.",
     build: [
-      ["50", "Aperol"],
-      ["100", "Prosecco"],
-      ["25", "soda"]
+      ingredient("50", "Aperol", "Aperol aperitif", "aperol"),
+      ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("25", "soda")
     ],
-    method: "Build over ice: add Aperol, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Orange"
   },
   {
@@ -379,14 +673,21 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("hugo-spritz"),
+    imageAlt: "Illustration of a pale Hugo Spritz with mint, lime and fine bubbles.",
     build: [
-      ["25", "St-Germain"],
-      ["100", "Prosecco"],
-      ["splash", "soda"]
+      ingredient(
+        "25",
+        "St-Germain",
+        "St-Germain elderflower liqueur",
+        "st-germain"
+      ),
+      ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("splash", "soda")
     ],
-    method: "Build over ice: add St-Germain, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Mint + lime wheel"
   },
   {
@@ -395,14 +696,21 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("limoncello-spritz"),
+    imageAlt: "Illustration of a lemon-yellow Limoncello Spritz with a lemon wheel.",
     build: [
-      ["50", "Pallini Limoncello"],
-      ["100", "Prosecco"],
-      ["splash", "soda"]
+      ingredient(
+        "50",
+        "Pallini Limoncello",
+        "Pallini Limoncello lemon liqueur",
+        "pallini-limoncello"
+      ),
+      ingredient("100", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("splash", "soda")
     ],
-    method: "Build over ice: add Limoncello, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Lemon wheel"
   },
   {
@@ -411,14 +719,16 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£13",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
+    image: image("sarti-spritz"),
+    imageAlt: "Illustration of a vivid pink Sarti Spritz with bubbles and a lime slice.",
     build: [
-      ["60", "Sarti Rosa"],
-      ["90", "Prosecco"],
-      ["30", "soda"]
+      ingredient("60", "Sarti Rosa", "Sarti Rosa aperitif", "sarti-rosa"),
+      ingredient("90", "Prosecco", "Prosecco sparkling wine", "prosecco"),
+      ingredient("30", "soda")
     ],
-    method: "Build over ice: add Sarti Rosa, Prosecco, then soda; gentle stir.",
+    method: "Add still ingredients, then Prosecco, then soda. Gentle stir.",
     finish: "Lime slice"
   },
   {
@@ -427,15 +737,29 @@ export const drinks = [
     category: "spritz",
     categoryLabel: "Spritz",
     price: "£10.25",
-    glass: "Large wine",
-    ice: "Cubed ice",
+    glass: "Large wine glass",
+    ice: "Fill with ice",
     alcoholFree: true,
     tags: ["0%", "alcohol-free", "mocktail"],
+    image: image("floral-spritz"),
+    imageAlt: "Illustration of a ruby alcohol-free Floral Spritz with fine bubbles.",
     build: [
-      ["25", "Crossip Pure Hibiscus"],
-      ["10", "rose"],
-      ["top", "0% sparkling"]
+      ingredient(
+        "25",
+        "Crossip Pure Hibiscus",
+        "Crossip Pure Hibiscus alcohol-free spirit",
+        "crossip-pure-hibiscus"
+      ),
+      ingredient("10", "rose"),
+      ingredient(
+        "top",
+        "0% sparkling",
+        "0% sparkling alcohol-free drink",
+        "zero-sparkling"
+      )
     ],
-    method: "Build over ice; top 0% sparkling; gentle stir."
+    method: "Build over ice; gentle stir.",
+    ambiguity:
+      "The revised source places this method in the finish column and does not specify a garnish."
   }
 ];

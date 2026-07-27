@@ -6,7 +6,8 @@
   "description": "An iPhone-friendly, offline cocktail cheat sheet for Coppa Club Streatley.",
   "scripts": {
     "start": "node scripts/server.mjs",
-    "test": "node scripts/verify.mjs"
+    "test": "node scripts/verify.mjs",
+    "visuals": "node scripts/create_visuals.mjs"
   },
   "devDependencies": {
     "playwright": "^1.62.0"

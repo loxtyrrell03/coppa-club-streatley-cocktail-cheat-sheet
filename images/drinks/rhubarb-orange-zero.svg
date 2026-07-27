@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration of an alcohol-free rhubarb and orange spritz with bubbles.</title>
+  <desc id="desc">Original editorial illustration created for this offline recipe guide.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f8f2e7"/>
+      <stop offset="1" stop-color="#f19a6c" stop-opacity=".32"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#173f37" flood-opacity=".2"/>
+    </filter>
+  </defs>
+  <rect width="800" height="450" rx="32" fill="url(#paper)"/>
+  <circle cx="96" cy="70" r="42" fill="#834131" opacity=".12"/>
+  <path d="M27 353q146-63 296-12t278 4q98-35 172-7v112H27z" fill="#834131" opacity=".08"/>
+  <ellipse cx="400" cy="420" rx="240" ry="20" fill="#173f37" opacity=".12"/>
+  <g filter="url(#shadow)">
+    <path d="M235 69q0 231 165 264Q565 300 565 69Z" fill="#fff" fill-opacity=".2" stroke="#173f37" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M251 143q19 160 149 181 130-21 149-181z" fill="#d35847" opacity=".92"/>
+    <rect x="298" y="178" width="76" height="64" rx="12" transform="rotate(-10 336 210)" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".55" stroke-width="4"/><rect x="390" y="145" width="76" height="64" rx="12" transform="rotate(8 428 177)" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".55" stroke-width="4"/><rect x="465" y="190" width="76" height="64" rx="12" transform="rotate(-7 503 222)" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".55" stroke-width="4"/><rect x="338" y="258" width="76" height="64" rx="12" transform="rotate(10 376 290)" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".55" stroke-width="4"/><rect x="430" y="270" width="76" height="64" rx="12" transform="rotate(-11 468 302)" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".55" stroke-width="4"/>
+    <circle cx="350" cy="247" r="7" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/><circle cx="411" cy="209" r="5" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/><circle cx="378" cy="162" r="6" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/><circle cx="442" cy="278" r="4" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/><circle cx="334" cy="303" r="4" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/><circle cx="428" cy="138" r="4" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/>
+    <ellipse cx="400" cy="69" rx="165" ry="24" fill="#f19a6c" fill-opacity=".75" stroke="#173f37" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M400 333v72M327 419h146" fill="none" stroke="#173f37" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  
+    <g transform="translate(548 94) rotate(18)">
+      <circle r="43" fill="#e87231" stroke="#173f37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle r="31" fill="#ffd58c" stroke="none"/>
+      <path d="M0 0V-30M0 0 25-17M0 0 25 17M0 0v30M0 0-25 17M0 0-25-17" fill="none" stroke="#e87231" stroke-width="4"/>
+    </g>
+  <path d="M95 131q35-29 68-2t68-2" fill="none" stroke="#834131" stroke-width="6" stroke-linecap="round" opacity=".35"/>
+</svg>

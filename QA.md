@@ -8,11 +8,18 @@
   content clips or creates page-level horizontal scrolling at 390 px or 320 px.
 - All 26 recipes appear in the correct 5 / 7 / 5 / 9 categories with source prices,
   builds, glass/ice, methods, finishes, and visible alcohol-free labels where applicable.
+- Every recipe has a distinct, useful-alt-text original drink illustration; no image
+  is broken, distorted, or dependent on a third-party runtime.
+- Exact source ingredient names remain visible. Every one of the 30 bottled product
+  mappings adds a verified type and opens the matching labelled reference—never a
+  different bottle.
+- The bottle dialog fits on iPhone, has a prominent close control, contains keyboard
+  focus, restores trigger focus, and closes via Close, Escape, outside tap, or browser Back.
 - Search is fast across names and ingredients; category filters, clear, empty-state
   reset, and diacritic-insensitive search all work with visible result counts.
 - The Install control gives exact Safari Add-to-Home-Screen guidance and can be closed.
-- Relative app-shell paths, the manifest, icons, service-worker scope, and offline
-  navigation work from a GitHub Pages-style subpath.
+- Relative app-shell paths, the manifest, icons, service-worker scope, and all 56
+  visual assets work offline from a GitHub Pages-style subpath.
 - Desktop layout is balanced and retains readable card structure.
 - The site has no login, analytics, tracking scripts, or third-party runtime assets.
 
@@ -25,8 +32,11 @@
 | Combined search/filter | Select Spritz and search `0%` | Two alcohol-free cards remain uncluttered |
 | Empty result | Search impossible text; use Show all | Empty state is centered and actionable |
 | Diacritic search | Search `pina`; find Spiced Piña Colada | Correct card name renders |
+| Bottle references | Open all 30 unique product IDs and compare title/type/alt/mapping | Illustration and labels fit; bottle affordance is obvious |
+| Bottle dismissal | Close by button, Escape, outside tap, browser Back; tab repeatedly | Focus stays in the dialog and returns to the trigger |
+| Image loading | Scroll through all 26 lazy images; force one bad URL | All images load; clear fallback replaces the failed image |
 | Install | Open dialog; close with both controls/backdrop | Steps and Share icon fit on iPhone |
-| Offline | Load once, set browser offline, reload subpath | Saved page and recipes remain visible |
+| Offline | Load once, set browser offline, reload subpath, open bottle | Saved page, 26 recipes, drink art, and bottle reference remain visible |
 | Responsive | Inspect 390×844, 320×568, and 1440×900 | No clipping, overlap, or horizontal page scroll |
 | Motion | Trigger a category filter | Card entrance is restrained; reduced-motion rule exists |
 

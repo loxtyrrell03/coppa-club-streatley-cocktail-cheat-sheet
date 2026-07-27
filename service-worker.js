@@ -1,4 +1,6 @@
-const CACHE_NAME = "coppa-drinks-v2";
+importScripts("./asset-manifest.js");
+
+const CACHE_NAME = "coppa-drinks-v10";
 const BASE = self.registration.scope;
 const APP_SHELL = [
   BASE,
@@ -6,16 +8,19 @@ const APP_SHELL = [
   `${BASE}styles.css`,
   `${BASE}app.js`,
   `${BASE}data.js`,
+  `${BASE}asset-manifest.js`,
   `${BASE}manifest.webmanifest`,
   `${BASE}icons/icon.svg`,
   `${BASE}icons/icon-192.png`,
   `${BASE}icons/icon-512.png`,
   `${BASE}icons/icon-maskable-512.png`,
-  `${BASE}icons/apple-touch-icon.png`
+  `${BASE}icons/apple-touch-icon.png`,
+  ...self.COPPA_IMAGE_ASSETS.map((path) => new URL(path, BASE).href)
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
+  const freshRequests = APP_SHELL.map((url) => new Request(url, { cache: "reload" }));
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(freshRequests)));
   self.skipWaiting();
 });
 
