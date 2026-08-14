@@ -454,7 +454,7 @@ PRODUCTS = {
     "bombay-sapphire": ("bombay", "Exact Bombay Sapphire gin bottle photograph"),
     "zero-sparkling": (
         "sparkling",
-        "Effervescence category reference; source brand was not specified",
+        "Sparkling drink category reference; exact REAL product not shown",
     ),
     "altos-plata": ("agave", "Blue-agave ingredient reference; exact bottle not shown"),
     "cointreau": ("cointreau", "Exact Cointreau orange liqueur bottle photograph"),
@@ -465,17 +465,17 @@ PRODUCTS = {
         "Vermouth botanical/citrus reference; exact Martini Rubino bottle not shown",
     ),
     "buffalo-trace": ("buffalo", "Exact Buffalo Trace bourbon bottle photograph"),
-    "havana-7": ("havana7", "Sugar-cane ingredient reference; exact Havana 7 bottle not shown"),
+    "havana-7": ("havana7", "Sugar-cane ingredient reference; exact Havana Club 7yo bottle not shown"),
     "plymouth": ("juniper", "Gin botanical reference; exact Plymouth bottle not shown"),
     "discarded-banana-rum": (
         "banana",
-        "Banana ingredient reference; exact Discarded Banana Rum bottle not shown",
+        "Banana ingredient reference; exact Discarded Banana Peel Rum bottle not shown",
     ),
     "crossip-blazing-pineapple": (
         "pineapple",
         "Pineapple ingredient reference; exact Crossip bottle not shown",
     ),
-    "havana-3": ("sugarcane", "Rum ingredient reference; exact Havana 3 bottle not shown"),
+    "havana-3": ("sugarcane", "Rum ingredient reference; exact Havana Club 3yr bottle not shown"),
     "compass-box-orchard-house": (
         "whisky",
         "Whisky category reference; exact Compass Box bottle not shown",
@@ -487,7 +487,7 @@ PRODUCTS = {
     "aperol": ("aperol", "Exact Aperol aperitif bottle photograph"),
     "prosecco": (
         "prosecco",
-        "Prosecco category photograph; the recipe does not specify a brand",
+        "Prosecco category photograph; exact Canal Grando bottle not shown",
     ),
     "mondoro-elderflower": (
         "elderflower",
@@ -507,7 +507,7 @@ PRODUCTS = {
     ),
     "premium-zero-sparkling": (
         "sparkling",
-        "Effervescence category reference; source brand was not specified",
+        "Sparkling drink category reference; exact REAL product not shown",
     ),
     "st-germain": ("st-germain", "Exact St-Germain elderflower liqueur bottle photograph"),
     "pallini-limoncello": ("pallini", "Exact Pallini Limoncello bottle photograph"),

@@ -1,9 +1,10 @@
 import { drinks, products } from "./data.js";
 import { photoCredits } from "./photo-credits.js";
+import "./catalog.js";
 import "./study.js";
 
 const categoryNames = {
-  all: "All drinks",
+  all: "All cocktails",
   coupe: "Coupe / Martini",
   rocks: "Rocks",
   highball: "Highball",
@@ -37,6 +38,8 @@ const elements = {
   bottleNote: document.querySelector("#bottle-note"),
   bottleCredit: document.querySelector("#bottle-credit"),
   bottleLicense: document.querySelector("#bottle-license"),
+  bottleProductReference: document.querySelector("#bottle-product-reference"),
+  bottleProductSource: document.querySelector("#bottle-product-source"),
   offlineBanner: document.querySelector("#offline-banner")
 };
 
@@ -53,6 +56,14 @@ const escapeHtml = (value) =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+
+const familyClass = (family = "mixer") => `family-${family}`;
+
+const measureMarkup = (measure = "") => {
+  if (!measure) return "";
+  const unit = /^\d+(?:\.\d+)?$/.test(measure) ? "<small>ml</small>" : "";
+  return `<span class="measure">${escapeHtml(measure)}${unit}</span>`;
+};
 
 const searchableText = (drink) =>
   normalise(
@@ -89,14 +100,14 @@ const productButtonMarkup = ({ productId, sourceName, measure = "", className = 
   const combinedLabel = `${sourceName}, ${product.type}`;
   return `
     <button
-      class="ingredient-button ${className}"
+      class="ingredient-button ${familyClass(product.family)} ${measure ? "" : "ingredient-button--no-measure"} ${className}"
       type="button"
       data-product-id="${escapeHtml(productId)}"
       aria-haspopup="dialog"
       aria-controls="bottle-dialog"
       aria-label="Open photo reference for ${escapeHtml(combinedLabel)}"
     >
-      ${measure ? `<span class="measure">${escapeHtml(measure)}</span>` : ""}
+      ${measureMarkup(measure)}
       <span class="ingredient-copy">
         <span class="ingredient-name">${escapeHtml(sourceName)}</span>
         <span class="ingredient-kind">${escapeHtml(product.type)}</span>
@@ -108,12 +119,12 @@ const productButtonMarkup = ({ productId, sourceName, measure = "", className = 
 
 const ingredientMarkup = (item) => {
   if (item.productId) {
-    return `<li class="build-item build-item--product">${productButtonMarkup(item)}</li>`;
+    return `<li class="build-item build-item--product ${familyClass(item.family)}">${productButtonMarkup(item)}</li>`;
   }
 
   return `
-    <li class="build-item">
-      ${item.measure ? `<span class="measure">${escapeHtml(item.measure)}</span>` : ""}
+    <li class="build-item ${familyClass(item.family)}">
+      ${measureMarkup(item.measure)}
       <span class="ingredient-name">${escapeHtml(item.sourceName)}</span>
     </li>
   `;
@@ -136,49 +147,53 @@ const photoCreditMarkup = (credit) => {
 
 const cardMarkup = (drink, index) => `
   <article class="recipe-card" style="--order: ${Math.min(index, 8)}" id="${escapeHtml(drink.id)}">
-    <figure class="drink-visual">
-      <img
-        src="${escapeHtml(drink.image)}"
-        alt="${escapeHtml(drink.imageAlt)}"
-        width="800"
-        height="450"
-        loading="${index < 2 ? "eager" : "lazy"}"
-        decoding="async"
-      />
-      <div class="drink-visual__fallback" hidden role="img" aria-label="Drink image unavailable">
-        <svg aria-hidden="true" viewBox="0 0 80 80">
-          <path d="M18 14h44q-3 29-22 33Q21 43 18 14Zm22 33v18m-14 0h28" />
-        </svg>
-        <span>Recipe image unavailable</span>
-      </div>
-      ${photoCreditMarkup(photoCredits.drinks[drink.id])}
-    </figure>
+    <div class="recipe-card__lead">
+      <div class="recipe-card__identity">
+        <div class="card-topline">
+          <p class="category-label">${escapeHtml(drink.categoryLabel)}</p>
+          ${drink.alcoholFree ? '<p class="zero-badge">Alcohol-free</p>' : ""}
+        </div>
 
-    <div class="card-topline">
-      <p class="category-label">${escapeHtml(drink.categoryLabel)}</p>
-      ${drink.alcoholFree ? '<p class="zero-badge">Alcohol-free</p>' : ""}
+        <div class="name-price">
+          <h3>${escapeHtml(drink.name)}</h3>
+          <p class="price">${escapeHtml(drink.price)}</p>
+        </div>
+
+        <dl class="serve-facts">
+          <div>
+            <dt>Glass</dt>
+            <dd>${escapeHtml(drink.glass)}</dd>
+          </div>
+          <div>
+            <dt>Ice</dt>
+            <dd>${escapeHtml(drink.ice)}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="drink-visual">
+        <img
+          src="${escapeHtml(drink.image)}"
+          alt="${escapeHtml(drink.imageAlt)}"
+          width="480"
+          height="640"
+          loading="${index < 4 ? "eager" : "lazy"}"
+          decoding="async"
+        />
+        <div class="drink-visual__fallback" hidden role="img" aria-label="Drink image unavailable">
+          <svg aria-hidden="true" viewBox="0 0 80 80">
+            <path d="M18 14h44q-3 29-22 33Q21 43 18 14Zm22 33v18m-14 0h28" />
+          </svg>
+          <span>Image unavailable</span>
+        </div>
+        ${photoCreditMarkup(photoCredits.drinks[drink.id])}
+      </figure>
     </div>
-
-    <div class="name-price">
-      <h3>${escapeHtml(drink.name)}</h3>
-      <p class="price">${escapeHtml(drink.price)}</p>
-    </div>
-
-    <dl class="serve-facts">
-      <div>
-        <dt>Glass</dt>
-        <dd>${escapeHtml(drink.glass)}</dd>
-      </div>
-      <div>
-        <dt>Ice</dt>
-        <dd>${escapeHtml(drink.ice)}</dd>
-      </div>
-    </dl>
 
     <section class="card-section" aria-labelledby="${escapeHtml(drink.id)}-build">
       <div class="section-heading">
         <h4 id="${escapeHtml(drink.id)}-build">Build</h4>
-        <span>Numbered measures: ml</span>
+        <span>ml unless marked</span>
       </div>
       <ul class="build-list">
         ${drink.build.map(ingredientMarkup).join("")}
@@ -224,7 +239,7 @@ const cardMarkup = (drink, index) => `
       drink.note
         ? `
           <aside class="recipe-note">
-            <strong>Watch:</strong> ${escapeHtml(drink.note)}
+            <strong>Note:</strong> ${escapeHtml(drink.note)}
           </aside>
         `
         : ""
@@ -234,7 +249,7 @@ const cardMarkup = (drink, index) => `
       drink.ambiguity
         ? `
           <aside class="source-ambiguity">
-            <strong>Source note:</strong> ${escapeHtml(drink.ambiguity)}
+            <strong>Spec gap:</strong> ${escapeHtml(drink.ambiguity)}
           </aside>
         `
         : ""
@@ -330,6 +345,8 @@ function openBottleDialog(trigger) {
   elements.bottleCredit.textContent = credit ? `Photo: ${credit.creator}` : "Product reference";
   elements.bottleLicense.href = credit?.licenseUrl ?? product.sourceUrl;
   elements.bottleLicense.textContent = credit?.license ?? "Source";
+  elements.bottleProductReference.hidden = !product.sourceUrl;
+  elements.bottleProductSource.href = product.sourceUrl || "#";
   elements.bottleDialog.showModal();
   history.pushState(
     { coppaBottle: product.id },

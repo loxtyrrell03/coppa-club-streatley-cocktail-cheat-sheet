@@ -1,76 +1,63 @@
-# Product and image audit
+# Product and image sources
 
-Audited 27 July 2026 against the revised **Coppa Club Streatley drinks cheat sheet,
-Summer 2026**, dated 23 July 2026. Cocktail builds were transcribed from pages 2–5.
-Numbered cocktail measures are ml; words such as `top`, `splash` and `dashes` remain
-as printed.
+Audited 14 August 2026 against the live
+[Streatley drinks page](https://theswanatstreatley.co.uk/food/menu/drinks/), its
+[Summer 2026 venue menu](https://theswanatstreatley.co.uk/wp-content/uploads/2026/04/Summer-26-Drinks-Menu-HIGH-110x250-WEB.pdf),
+and Coppa Club's current
+[Season of Spritz menu](https://coppa.cdn.prismic.io/coppa/pdFipmP7wvLMdqz__Summer26DrinksMenuSummerofSpritzHIGHWEB.pdf).
+The audit boundary and service caveats are recorded in
+[DATA_AUDIT.md](./DATA_AUDIT.md).
+
+## Evidence boundary
+
+The public sources verify menu names, consumer-facing ingredients, descriptions,
+prices, wine notes, formats, and the venue's listed draught ABVs. They do **not**
+publish the exact cocktail measures, methods, ice, or garnish used by this app.
+Those fields are reconstructed operational builds from the Summer 2026 working
+sheet. They are useful training data, not a claim of an official public recipe.
+
+The live bar bible, till, bottle label, and keg badge always win. In particular,
+vintages and packaged ABVs can change without a menu redesign.
+
+## Product decisions
+
+Ingredient labels keep the source wording and add a plain-language type only where
+that helps recognition. Key references include
+[Absolut](https://www.absolut.com/en/products/absolut-vodka/),
+[Bombay Sapphire](https://www.bombaysapphire.com/products/bombay-sapphire/),
+[Altos Plata](https://olmecaaltos.com/olmeca-altos-plata/),
+[MARTINI Riserva Speciale Rubino](https://www.martini.com/products/riserva-speciale-rubino/),
+[Havana Club](https://havana-club.com/en-gb/our-rums/),
+[Discarded Banana Peel Rum](https://discardedspirits.com/products/discarded-rum),
+[Crossip Blazing Pineapple](https://www.crossipdrinks.com/products/blazing-pineapple),
+[Compass Box Orchard House](https://www.compassboxwhisky.com/products/orchard-house),
+[Aperol](https://www.aperol.com/our-products/aperol/), and
+[St-Germain](https://www.stgermainliqueur.com/us/en).
+
+Two sparkling mappings are deliberately qualified:
+
+- The wine list names **Canal Grando NV Prosecco** as its only Prosecco, making it
+  the likely cocktail pour. No public source explicitly maps it to every cocktail
+  that says only `Prosecco`.
+- The alcohol-free list names **REAL Sparkling Dry White**, making it the likely
+  alcohol-free sparkling pour. The cocktail menu does not explicitly confirm that
+  mapping. REAL is alcohol-free at about 0.5% ABV, not a `0.0%` product, so the app
+  uses **AF / alcohol-free** rather than claiming zero alcohol.
+
+The app surfaces both as likely pours with a **verify at bar** qualifier rather
+than silently inventing a brand.
 
 ## Photography policy
 
-[Coppa Club's public website](https://www.coppaclub.co.uk/) and
-[booking terms](https://www.coppaclub.co.uk/terms-and-conditions) do not provide a
-licence to republish its menu photography. Product manufacturers' public pages
-identify their products, but their bottle pack shots likewise carry no explicit
-general reuse licence. The app therefore does not scrape or republish those assets.
+Coppa Club and manufacturer pages identify products but do not grant a general
+licence to republish their menu or pack-shot photography. The app therefore uses
+locally stored, optimized images with a documented reuse basis: Pexels, Creative
+Commons, CC0, or the Public Domain Mark.
 
-All 26 drink-card images and all 30 bottle/ingredient references are locally stored,
-optimized photographs with a defensible reuse basis: the
-[Pexels licence](https://www.pexels.com/license/), Creative Commons attribution
-licences, CC0, or the Public Domain Mark. The source page, creator, licence, and
-licence URL for every file are recorded in
-[`PHOTO_CREDITS.json`](./PHOTO_CREDITS.json) and displayed inside the app.
+Drink images are representative of the correct serving family and are not claimed
+to be official photographs of proprietary recipes. A product tap either uses a
+correctly matched reusable photograph or clearly states **exact bottle not shown**;
+it never substitutes a different brand's bottle.
 
-Drink photographs were manually audited against their source serving family:
-Coupe/Martini, Rocks, Highball, or large wine glass. They are representative
-serving photographs for training and are not claimed to be official Coppa Club
-photographs of proprietary recipes.
-
-Eleven product taps use a correctly matched, reusable product photograph. Where a
-correct reusable pack shot could not be found, the modal uses a real
-ingredient/category photograph and says **exact bottle not shown**. No tap target
-uses a different brand's bottle as a substitute.
-
-## Product-type references
-
-The recipe sheet remains authoritative for ingredient wording. These references
-were used only to add a useful product type.
-
-| Source wording | Displayed type | Reference |
-| --- | --- | --- |
-| Absolut | vodka | [Absolut](https://www.absolut.com/en/products/absolut-vodka/) |
-| Absolut Vanilla | vanilla-flavoured vodka | [Absolut Vanilia](https://www.absolut.com/en/products/absolut-vanilia/) |
-| Kahlúa | coffee liqueur | [Kahlúa](https://www.kahlua.com/en/products/original-coffee-liqueur/) |
-| Crossip Pure Hibiscus | alcohol-free spirit | [Crossip FAQ](https://www.crossipdrinks.com/pages/faq) |
-| Veuve Clicquot | Champagne | [Veuve Clicquot](https://www.veuveclicquot.com/en-int/our-champagnes/yellow-label) |
-| Bombay Sapphire | gin | [Bombay Sapphire](https://www.bombaysapphire.com/products/bombay-sapphire/) |
-| Altos Plata | tequila | [Altos Plata](https://olmecaaltos.com/olmeca-altos-plata/) |
-| Cointreau | orange liqueur | [Cointreau](https://www.cointreau.com/us/en/what-cointreau) |
-| Beefeater | London dry gin | [Beefeater](https://www.beefeatergin.com/en-gb/our-gins/london-dry-gin/) |
-| Campari | bitter aperitif | [Campari](https://www.campari.com/our-products/campari/) |
-| Martini Rubino | vermouth | [MARTINI](https://www.martini.com/products/riserva-speciale-rubino/) |
-| Buffalo Trace | bourbon whiskey | [Buffalo Trace](https://www.buffalotracedistillery.com/our-brands/buffalo-trace/) |
-| Havana 3 / Havana 7 | white rum / aged rum | [Havana Club](https://havana-club.com/en-gb/our-rums/) |
-| Havana Spiced | spiced rum | [Havana Club](https://havana-club.com/en/our-rum/cuban-spiced/) |
-| Plymouth | gin | [Plymouth Gin](https://www.plymouthgin.com/en/product/plymouth-gin/) |
-| Discarded Banana Rum | banana rum | [Discarded](https://discardedspirits.com/products/discarded-rum) |
-| Crossip Blazing Pineapple | alcohol-free spirit | [Crossip](https://www.crossipdrinks.com/products/blazing-pineapple) |
-| Compass Box Orchard House | blended malt Scotch whisky | [Compass Box](https://www.compassboxwhisky.com/products/orchard-house) |
-| Aperol | aperitif | [Aperol](https://www.aperol.com/our-products/aperol/) |
-| Mondoro Elderflower | elderflower aperitif | [Difford's Guide](https://www.diffordsguide.com/beer-wine-spirits/12366/mondoro-aperitivo-elderflower) |
-| lavender Monin | lavender syrup | [MONIN](https://monin1912.com/products/monin-lavender-syrup) |
-| Bristol Syrup Co rhubarb-and-orange syrup | rhubarb-and-orange syrup | [St Austell Brewery Wholesale](https://staustellbrewerywholesale.co.uk/soft/syrups/bristol-syrup-co-rhubarb-orange-spritz-syrup-1-750ml-glass-bottle/) |
-| St-Germain | elderflower liqueur | [St-Germain](https://www.stgermainliqueur.com/us/en) |
-| Pallini Limoncello | lemon liqueur | [Pallini](https://pallini.com/en/prodotti-pallini/limoncello/) |
-| Sarti Rosa | Italian aperitif | [Sarti](https://www.sartiaperitivo.com/) |
-
-`Prosecco`, `Limoncello`, `0% sparkling` and `premium 0% sparkling` have no brand
-specified in the cocktail build. The app labels their ingredient type but does not
-invent a brand.
-
-## Source ambiguities preserved
-
-- **Peach & Elderflower Mai Tai:** `bitters` has no quantity in the revised sheet.
-- **Floral Spritz:** `Build over ice; gentle stir` appears in the finish column; no
-  garnish is specified.
-- `BVD` does not appear anywhere in the revised nine-page source, so no expansion
-  was required or invented.
+The creator, source, licence, and licence URL for each asset are recorded in
+[PHOTO_CREDITS.json](./PHOTO_CREDITS.json) and shown in the app.

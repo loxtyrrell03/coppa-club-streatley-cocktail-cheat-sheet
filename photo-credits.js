@@ -297,7 +297,7 @@ export const photoCredits = {
       "license": "Pexels licence",
       "licenseUrl": "https://www.pexels.com/license/",
       "sourceUrl": "https://www.pexels.com/photo/close-up-shot-of-a-glass-of-drink-9946170/",
-      "note": "Effervescence category reference; source brand was not specified"
+      "note": "Sparkling drink category reference; exact REAL product not shown"
     },
     "altos-plata": {
       "id": "altos-plata",
@@ -360,7 +360,7 @@ export const photoCredits = {
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
       "sourceUrl": "https://www.flickr.com/photos/33682661@N00/2214182186",
-      "note": "Sugar-cane ingredient reference; exact Havana 7 bottle not shown"
+      "note": "Sugar-cane ingredient reference; exact Havana Club 7yo bottle not shown"
     },
     "plymouth": {
       "id": "plymouth",
@@ -378,7 +378,7 @@ export const photoCredits = {
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
       "sourceUrl": "https://www.flickr.com/photos/33227787@N05/9260183915",
-      "note": "Banana ingredient reference; exact Discarded Banana Rum bottle not shown"
+      "note": "Banana ingredient reference; exact Discarded Banana Peel Rum bottle not shown"
     },
     "crossip-blazing-pineapple": {
       "id": "crossip-blazing-pineapple",
@@ -396,7 +396,7 @@ export const photoCredits = {
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
       "sourceUrl": "https://www.flickr.com/photos/33682661@N00/2214182186",
-      "note": "Rum ingredient reference; exact Havana 3 bottle not shown"
+      "note": "Rum ingredient reference; exact Havana Club 3yr bottle not shown"
     },
     "compass-box-orchard-house": {
       "id": "compass-box-orchard-house",
@@ -432,7 +432,7 @@ export const photoCredits = {
       "license": "CC BY-SA 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
       "sourceUrl": "https://www.flickr.com/photos/74903273@N05/7233984776",
-      "note": "Prosecco category photograph; the recipe does not specify a brand"
+      "note": "Prosecco category photograph; exact Canal Grando bottle not shown"
     },
     "mondoro-elderflower": {
       "id": "mondoro-elderflower",
@@ -477,7 +477,7 @@ export const photoCredits = {
       "license": "Pexels licence",
       "licenseUrl": "https://www.pexels.com/license/",
       "sourceUrl": "https://www.pexels.com/photo/close-up-shot-of-a-glass-of-drink-9946170/",
-      "note": "Effervescence category reference; source brand was not specified"
+      "note": "Sparkling drink category reference; exact REAL product not shown"
     },
     "st-germain": {
       "id": "st-germain",

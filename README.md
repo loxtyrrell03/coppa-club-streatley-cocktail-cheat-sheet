@@ -1,7 +1,7 @@
-# Coppa Club Streatley drinks cheat sheet
+# Coppa Club Streatley bar guide
 
-An iPhone-first, installable cocktail reference and spaced-repetition trainer built
-from the revised **23 July 2026** Summer 2026 working drinks sheet.
+An iPhone-first, installable reference for the Summer 2026 drinks range at Coppa
+Club Streatley.
 
 **Open the app:**
 
@@ -9,65 +9,57 @@ from the revised **23 July 2026** Summer 2026 working drinks sheet.
 
 ## What is included
 
-- All 26 recipes from source pages 2–5
-- Licensed cocktail photography matched to the correct glass family
-- Tappable branded ingredients with 30 real bottle/ingredient photo references
-- Exact source ingredient wording plus verified plain-language product types
-- Fast name and ingredient search
-- Coupe/Martini, Rocks, Highball, and Spritz filters
-- The user’s 26-card cocktail flashcard deck in a dedicated Study mode
-- Anki-style Again / Hard / Good / Easy scheduling with visible next intervals
-- On-device due counts, learning status, review streak, and session summaries
-- Large type and touch targets for bar use
-- Offline caching and iPhone Home Screen metadata
-- No account, analytics, cookies, or tracking
+- **Cocktails:** 26 searchable working builds, grouped by serve, with compact
+  left-aligned specs and restrained ingredient-family colour cues.
+- **Wines:** the 49-wine Streatley list with region, venue tasting notes, price,
+  and a practical dryness/body guide.
+- **Beer & cider:** 14 draught and packaged drinks with style, format, price, and
+  ABV where published.
+- **Study:** the 26 cocktail builds only, using an on-device spaced-repetition
+  queue. Wine, beer, and cider are not flashcards.
+- A separate search within Cocktails, Wines, and Beer & cider, so queries never
+  leak between sections.
+- Local, credited imagery; offline caching; iPhone Home Screen metadata; no
+  account, analytics, cookies, or tracking.
 
-The product-type evidence, photography policy, and two preserved source ambiguities
-are documented in [PRODUCT_SOURCES.md](./PRODUCT_SOURCES.md). Per-image creator,
-source, and licence records are in [PHOTO_CREDITS.json](./PHOTO_CREDITS.json).
+The public menu establishes names, descriptions, prices, wine notes, and listed
+draught ABVs. Exact cocktail measures and service instructions come from a
+reconstructed Summer 2026 working sheet and are not represented as a published
+Coppa specification. Measures are **ml** unless marked; the live Streatley bar
+bible, till, bottle label, and keg badge take precedence.
 
-Numbered cocktail measures are **ml**. Written dashes, splashes and tops remain as
-shown in the source. These are reconstructed working specs; the live Streatley bar
-bible wins if anything differs.
+See [DATA_AUDIT.md](./DATA_AUDIT.md) for coverage and unresolved checks,
+[PRODUCT_SOURCES.md](./PRODUCT_SOURCES.md) for product and photography evidence,
+and [PHOTO_CREDITS.json](./PHOTO_CREDITS.json) for per-image records.
 
-## Run locally
+## Run and verify locally
 
 ```powershell
 npm start
+npm test
 ```
 
 Then open
 `http://127.0.0.1:4173/coppa-club-streatley-cocktail-cheat-sheet/`.
 
-## Verify
-
-```powershell
-npm test
-```
-
-To re-fetch and optimize the licensed photo pack:
+To refresh the licensed photo pack:
 
 ```powershell
 npm run photos
 ```
 
-The source list is intentionally curated; review any source change before running it.
+The photo source list is curated; review any source change before running it.
 
-## Study scheduling
+## Study data
 
-Study progress is saved in the browser under `coppa-study-v1`; it never leaves the
-device. New cards begin with short learning steps. Again returns a card during the
-session, while graduated review cards receive increasingly long intervals based on
-Again, Hard, Good, or Easy.
+Progress is saved only in the browser under `coppa-study-v1`. New cards use short
+learning steps, followed by Again / Hard / Good / Easy review intervals. This is
+an Anki-style local trainer, not an Anki Sync client.
 
-This is an Anki-style local trainer, not an Anki Sync client. It does not read or
-alter scheduling history inside the `.apkg` file.
-
-## iPhone installation
+## Install on iPhone
 
 1. Open the published URL in Safari.
-2. Tap **Share**.
-3. Scroll down and tap **Add to Home Screen**.
-4. Tap **Add**.
+2. Tap **Share**, then **Add to Home Screen**.
+3. Tap **Add**.
 
-The app is a static PWA hosted free on GitHub Pages.
+The app is a static PWA hosted on GitHub Pages.

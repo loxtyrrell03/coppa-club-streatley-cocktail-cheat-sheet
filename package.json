@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "An iPhone-friendly, offline cocktail cheat sheet for Coppa Club Streatley.",
+  "description": "An iPhone-friendly, offline drinks and cocktail-study guide for Coppa Club Streatley.",
   "scripts": {
     "start": "node scripts/server.mjs",
     "test": "node scripts/verify.mjs",

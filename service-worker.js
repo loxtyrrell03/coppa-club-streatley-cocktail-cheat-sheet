@@ -1,12 +1,14 @@
 importScripts("./asset-manifest.js");
 
-const CACHE_NAME = "coppa-drinks-v16";
+const CACHE_NAME = "coppa-bar-guide-v17";
 const BASE = self.registration.scope;
 const APP_SHELL = [
   BASE,
   `${BASE}index.html`,
   `${BASE}styles.css`,
   `${BASE}app.js`,
+  `${BASE}catalog.js`,
+  `${BASE}catalog-data.js`,
   `${BASE}data.js`,
   `${BASE}flashcards.js`,
   `${BASE}scheduler.js`,

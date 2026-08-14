@@ -14,7 +14,9 @@ const DAY = 24 * 60 * 60 * 1000;
 
 const elements = {
   recipesView: document.querySelector("#recipes-view"),
-  studyView: document.querySelector("#study"),
+  winesView: document.querySelector("#wines-view"),
+  beersView: document.querySelector("#beers-view"),
+  studyView: document.querySelector("#study-view"),
   navLinks: [...document.querySelectorAll("[data-app-view]")],
   navCount: document.querySelector("#study-nav-count"),
   skipLink: document.querySelector(".skip-link"),
@@ -29,6 +31,7 @@ const elements = {
   newCount: document.querySelector("#study-new-count"),
   learntCount: document.querySelector("#study-learnt-count"),
   streak: document.querySelector("#study-streak"),
+  streakUnit: document.querySelector("#study-streak-unit"),
   nextDue: document.querySelector("#study-next-due"),
   progressText: document.querySelector("#study-progress-text"),
   progressBar: document.querySelector("#study-progress-bar"),
@@ -47,6 +50,14 @@ const escapeHtml = (value) =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+
+const familyClass = (family = "mixer") => `family-${family}`;
+
+const measureMarkup = (measure = "") => {
+  if (!measure) return "";
+  const unit = /^\d+(?:\.\d+)?$/.test(measure) ? "<small>ml</small>" : "";
+  return `<span class="measure">${escapeHtml(measure)}${unit}</span>`;
+};
 
 const dayKey = (date = new Date()) => {
   const year = date.getFullYear();
@@ -114,20 +125,26 @@ function nextDueCopy(now = Date.now()) {
   const wait = scheduled[0] - now;
   if (wait < 60 * 60 * 1000) return `Next review in ${Math.max(1, Math.ceil(wait / 60000))} min`;
   if (wait < DAY) return `Next review in ${Math.ceil(wait / (60 * 60 * 1000))} hr`;
-  return `Next review in ${Math.ceil(wait / DAY)} day`;
+  const days = Math.ceil(wait / DAY);
+  return `Next review in ${days} ${days === 1 ? "day" : "days"}`;
 }
 
 function renderDashboard() {
   const schedules = flashcards.map((card) => scheduleFor(card.id));
   const due = dueCards();
   const newCount = schedules.filter((schedule) => schedule.state === "new").length;
-  const learnt = schedules.filter((schedule) => schedule.state === "review").length;
+  const seen = schedules.filter((schedule) => schedule.state !== "new").length;
 
   elements.dueCount.textContent = due.length;
   elements.newCount.textContent = newCount;
-  elements.learntCount.textContent = learnt;
+  elements.learntCount.textContent = seen;
   elements.streak.textContent = progress.streak;
+  elements.streakUnit.textContent = ` ${progress.streak === 1 ? "day" : "days"}`;
   elements.navCount.textContent = due.length;
+  elements.navCount.setAttribute(
+    "aria-label",
+    `${due.length} ${due.length === 1 ? "card" : "cards"} ready`
+  );
   elements.nextDue.textContent = due.length
     ? `${due.length} ${due.length === 1 ? "card" : "cards"} ready now`
     : nextDueCopy();
@@ -140,14 +157,14 @@ const productButton = (item) => {
   if (!product) return "";
   return `
     <button
-      class="ingredient-button study-ingredient"
+      class="ingredient-button study-ingredient ${familyClass(product.family)} ${item.measure ? "" : "ingredient-button--no-measure"}"
       type="button"
       data-product-id="${escapeHtml(item.productId)}"
       aria-haspopup="dialog"
       aria-controls="bottle-dialog"
       aria-label="Open photo reference for ${escapeHtml(item.sourceName)}, ${escapeHtml(product.type)}"
     >
-      ${item.measure ? `<span class="measure">${escapeHtml(item.measure)}</span>` : ""}
+      ${measureMarkup(item.measure)}
       <span class="ingredient-copy">
         <span class="ingredient-name">${escapeHtml(item.sourceName)}</span>
         <span class="ingredient-kind">${escapeHtml(product.type)}</span>
@@ -161,10 +178,10 @@ const productButton = (item) => {
 
 const ingredient = (item) =>
   item.productId
-    ? `<li class="build-item build-item--product">${productButton(item)}</li>`
+    ? `<li class="build-item build-item--product ${familyClass(item.family)}">${productButton(item)}</li>`
     : `
-      <li class="build-item">
-        ${item.measure ? `<span class="measure">${escapeHtml(item.measure)}</span>` : ""}
+      <li class="build-item ${familyClass(item.family)}">
+        ${measureMarkup(item.measure)}
         <span class="ingredient-name">${escapeHtml(item.sourceName)}</span>
       </li>
     `;
@@ -173,57 +190,63 @@ function answerMarkup(card) {
   const { drink } = card;
   const credit = photoCredits.drinks[drink.id];
   return `
-    <figure class="study-photo">
-      <img src="${escapeHtml(drink.image)}" alt="${escapeHtml(drink.imageAlt)}" width="800" height="450" />
-      <figcaption>
-        <a href="${escapeHtml(credit.sourceUrl)}" target="_blank" rel="noopener">
-          Photo: ${escapeHtml(credit.creator)}
-        </a>
-      </figcaption>
-    </figure>
-    <div class="study-answer__body">
-      <div class="study-serve-facts">
-        <p><span>Glass</span><strong>${escapeHtml(drink.glass)}</strong></p>
-        <p><span>Ice</span><strong>${escapeHtml(drink.ice)}</strong></p>
-        <p><span>Price</span><strong>${escapeHtml(drink.price)}</strong></p>
+    <div class="study-answer__layout">
+      <div class="study-answer__body">
+        <dl class="study-serve-facts">
+          <div><dt>Glass</dt><dd>${escapeHtml(drink.glass)}</dd></div>
+          <div><dt>Ice</dt><dd>${escapeHtml(drink.ice)}</dd></div>
+        </dl>
+        <section class="study-build">
+          <div class="section-heading">
+            <h3>Build</h3>
+            <span>ml unless marked</span>
+          </div>
+          <ul class="build-list">${drink.build.map(ingredient).join("")}</ul>
+        </section>
+        <dl class="study-details">
+          <div>
+            <dt>Method</dt>
+            <dd>${escapeHtml(drink.method)}</dd>
+          </div>
+          ${
+            drink.serve
+              ? `
+                <div>
+                  <dt>Serve</dt>
+                  <dd>
+                    ${
+                      drink.serveProductId
+                        ? productButton({
+                            productId: drink.serveProductId,
+                            sourceName: drink.serve,
+                            measure: ""
+                          })
+                        : escapeHtml(drink.serve)
+                    }
+                  </dd>
+                </div>
+              `
+              : ""
+          }
+          <div>
+            <dt>Finish</dt>
+            <dd>${escapeHtml(drink.finish || "—")}</dd>
+          </div>
+        </dl>
+        ${drink.note ? `<aside class="recipe-note"><strong>Note:</strong> ${escapeHtml(drink.note)}</aside>` : ""}
+        ${drink.ambiguity ? `<aside class="source-ambiguity"><strong>Spec gap:</strong> ${escapeHtml(drink.ambiguity)}</aside>` : ""}
       </div>
-      <section class="study-build">
-        <div class="section-heading">
-          <h3>Build</h3>
-          <span>Numbered measures: ml</span>
-        </div>
-        <ul class="build-list">${drink.build.map(ingredient).join("")}</ul>
-      </section>
-      <dl class="study-details">
-        <div>
-          <dt>Method</dt>
-          <dd>${escapeHtml(drink.method)}</dd>
-        </div>
-        ${
-          drink.serve
-            ? `
-              <div>
-                <dt>Serve</dt>
-                <dd>
-                  ${
-                    drink.serveProductId
-                      ? productButton({
-                          productId: drink.serveProductId,
-                          sourceName: drink.serve,
-                          measure: ""
-                        })
-                      : escapeHtml(drink.serve)
-                  }
-                </dd>
-              </div>
-            `
-            : ""
-        }
-        <div>
-          <dt>Finish</dt>
-          <dd>${escapeHtml(drink.finish || "None listed")}</dd>
-        </div>
-      </dl>
+      <figure class="study-photo">
+        <img src="${escapeHtml(drink.image)}" alt="${escapeHtml(drink.imageAlt)}" width="480" height="640" />
+        <figcaption>
+          <a
+            href="${escapeHtml(credit.sourceUrl)}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Photo by ${escapeHtml(credit.creator)}"
+          >Photo: ${escapeHtml(credit.creator)}</a>
+        </figcaption>
+      </figure>
     </div>
   `;
 }
@@ -260,13 +283,14 @@ function renderCard() {
       <p class="category-label">${escapeHtml(card.drink.categoryLabel)}</p>
       ${card.tags.includes("alcohol_free") ? '<p class="zero-badge">Alcohol-free</p>' : ""}
       <h2>${escapeHtml(card.front)}</h2>
-      <p>Recall the full build, method, glass, ice and finish.</p>
+      <p class="study-prompt">Build · Method · Glass · Ice · Finish</p>
     </div>
   `;
   elements.answer.innerHTML = answerMarkup(card);
   elements.answer.hidden = true;
   elements.gradePanel.hidden = true;
   elements.showAnswer.hidden = false;
+  elements.showAnswer.setAttribute("aria-expanded", "false");
   elements.showAnswer.focus();
   gradeButtons(card);
 }
@@ -287,7 +311,9 @@ function revealAnswer() {
   elements.answer.hidden = false;
   elements.gradePanel.hidden = false;
   elements.showAnswer.hidden = true;
-  elements.gradePanel.querySelector("button")?.focus();
+  elements.showAnswer.setAttribute("aria-expanded", "true");
+  elements.answer.tabIndex = -1;
+  elements.answer.focus({ preventScroll: true });
 }
 
 function rateCurrent(rating) {
@@ -342,7 +368,9 @@ function endSession() {
 
 function setView(view) {
   const studying = view === "study";
-  elements.recipesView.hidden = studying;
+  elements.recipesView.hidden = view !== "cocktails";
+  elements.winesView.hidden = view !== "wines";
+  elements.beersView.hidden = view !== "beers";
   elements.studyView.hidden = !studying;
   elements.navLinks.forEach((link) => {
     const active = link.dataset.appView === view;
@@ -350,22 +378,38 @@ function setView(view) {
     if (active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  elements.skipLink.href = studying ? "#study-dashboard" : "#recipes";
-  elements.skipLink.textContent = studying ? "Skip to study" : "Skip to recipes";
+  const skipTargets = {
+    cocktails: ["#recipes", "Skip to cocktails"],
+    wines: ["#wines-title", "Skip to wines"],
+    beers: ["#beers-title", "Skip to beer and cider"],
+    study: ["#study-title", "Skip to study"]
+  };
+  const [skipHref, skipLabel] = skipTargets[view];
+  elements.skipLink.setAttribute("href", skipHref);
+  elements.skipLink.textContent = skipLabel;
   if (studying) renderDashboard();
 }
 
 function viewFromHash() {
-  return location.hash === "#study" ? "study" : "recipes";
+  const view = location.hash.slice(1);
+  if (view === "recipes") return "cocktails";
+  return ["cocktails", "wines", "beers", "study"].includes(view) ? view : "cocktails";
 }
 
-function scrollToView(view) {
-  const target =
-    view === "study" ? document.querySelector(".mode-switcher") : elements.recipesView;
-  if (!target) return;
+function scrollToView(behavior = "smooth") {
+  if (behavior === "auto") {
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo({ top: 0, left: 0 });
+    requestAnimationFrame(() => {
+      root.style.scrollBehavior = previousBehavior;
+    });
+    return;
+  }
   window.scrollTo({
-    top: Math.max(0, target.offsetTop - (view === "study" ? 16 : 0)),
-    behavior: "smooth"
+    top: 0,
+    behavior
   });
 }
 
@@ -389,15 +433,24 @@ elements.reset.addEventListener("click", () => {
 elements.navLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
-    const view = link.dataset.appView === "study" ? "study" : "recipes";
+    const view = link.dataset.appView;
     location.hash = view;
-    requestAnimationFrame(() => scrollToView(view));
   });
 });
-window.addEventListener("hashchange", () => setView(viewFromHash()));
+window.addEventListener("hashchange", () => {
+  const view = viewFromHash();
+  setView(view);
+  requestAnimationFrame(() => scrollToView("auto"));
+});
 window.addEventListener("keydown", (event) => {
   if (elements.studyView.hidden || elements.session.hidden) return;
-  if (!answerVisible && (event.key === " " || event.key === "Enter")) {
+  if (
+    document.querySelector("dialog[open]") ||
+    event.target.closest("button, a, input, select, textarea, [contenteditable='true']")
+  ) {
+    return;
+  }
+  if (!answerVisible && event.key === " ") {
     event.preventDefault();
     revealAnswer();
     return;
@@ -408,8 +461,6 @@ window.addEventListener("keydown", (event) => {
 
 const initialView = viewFromHash();
 setView(initialView);
-if (initialView === "study") {
-  requestAnimationFrame(() => scrollToView("study"));
-}
+requestAnimationFrame(() => scrollToView("auto"));
 renderDashboard();
 setInterval(renderDashboard, 30 * 1000);

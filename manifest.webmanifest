@@ -1,7 +1,7 @@
 {
-  "name": "Coppa Club Streatley Drinks Cheat Sheet",
+  "name": "Coppa Club Streatley Bar Guide",
   "short_name": "Coppa Drinks",
-  "description": "Offline cocktail specs and spaced-repetition training for Coppa Club Streatley.",
+  "description": "Offline cocktail, wine, beer and training guide for Coppa Club Streatley.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
@@ -32,7 +32,17 @@
     {
       "name": "Search drinks",
       "short_name": "Search",
-      "url": "./#recipes"
+      "url": "./#cocktails"
+    },
+    {
+      "name": "Browse wines",
+      "short_name": "Wines",
+      "url": "./#wines"
+    },
+    {
+      "name": "Browse beer and cider",
+      "short_name": "Beer",
+      "url": "./#beers"
     },
     {
       "name": "Study flashcards",

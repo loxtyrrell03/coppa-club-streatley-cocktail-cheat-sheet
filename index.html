@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta
       name="description"
-      content="Fast, offline-friendly cocktail specs and spaced-repetition training for Coppa Club Streatley."
+      content="Coppa Club Streatley cocktails, wines, beer and menu training, available offline."
     />
     <meta name="theme-color" content="#0d4f45" />
     <meta name="color-scheme" content="light" />
@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Coppa Drinks" />
 
-    <title>Coppa Club Streatley · Drinks cheat sheet</title>
+    <title>Coppa Club Streatley · Bar guide</title>
 
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
@@ -21,14 +21,14 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#recipes">Skip to recipes</a>
+    <a class="skip-link" href="#recipes">Skip to cocktails</a>
 
     <header class="masthead">
       <div class="masthead__inner">
         <div class="brand-line">
           <div>
             <p class="eyebrow">Coppa Club · Streatley</p>
-            <h1>Drinks cheat sheet</h1>
+            <h1>Bar guide</h1>
           </div>
           <button class="install-button" id="install-button" type="button">
             <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -41,25 +41,27 @@
         <div class="edition-line">
           <span>Summer 2026</span>
           <span aria-hidden="true">·</span>
-          <span>26 drinks</span>
+          <span>Cocktails · Wine · Beer</span>
           <span aria-hidden="true">·</span>
-          <span>Revised 23 July</span>
+          <span>Menu checked 14 August</span>
         </div>
 
-        <aside class="source-note" aria-label="Important recipe note">
+        <aside class="source-note" aria-label="Recipe status">
           <svg aria-hidden="true" viewBox="0 0 24 24">
             <path d="M12 8v5m0 3.25v.01M12 3.5 21 20H3L12 3.5Z" />
           </svg>
-          <p>
-            <strong>Numbered cocktail measures are ml.</strong> Written dashes, splashes
-            and tops are as shown. These are reconstructed working specs; if anything
-            differs, the live Streatley bar bible wins.
-          </p>
+          <p><strong>Cocktail measures are working specs.</strong> Measures are ml unless marked. Use the live bar bible for service changes.</p>
         </aside>
 
         <nav class="mode-switcher" aria-label="App sections">
-          <a class="is-active" href="#recipes" data-app-view="recipes" aria-current="page">
-            Recipes
+          <a class="is-active" href="#cocktails" data-app-view="cocktails" aria-current="page">
+            Cocktails
+          </a>
+          <a href="#wines" data-app-view="wines">
+            Wines
+          </a>
+          <a href="#beers" data-app-view="beers">
+            Beer
           </a>
           <a href="#study" data-app-view="study">
             Study
@@ -70,7 +72,7 @@
     </header>
 
     <div class="offline-banner" id="offline-banner" role="status" hidden>
-      Offline mode · recipes, photos and study progress are ready
+      Offline · the bar guide and study progress are available
     </div>
 
     <main>
@@ -118,9 +120,10 @@
 
         <section class="recipes-section" id="recipes" aria-labelledby="results-heading">
           <div class="results-line">
-            <h2 id="results-heading">All drinks</h2>
+            <h2 id="results-heading">All cocktails</h2>
             <p id="result-count" aria-live="polite">26 recipes</p>
           </div>
+          <p class="section-status">Seasonal spritz prices follow the current Coppa menu; confirm the Streatley till.</p>
           <div class="recipe-grid" id="recipe-grid"></div>
           <div class="empty-state" id="empty-state" hidden>
             <p>No drinks found.</p>
@@ -129,20 +132,87 @@
         </section>
       </div>
 
-      <section class="study-view" id="study" aria-labelledby="study-title" hidden>
+      <section class="catalog-view" id="wines-view" aria-labelledby="wines-title" hidden>
+        <div class="tools catalog-tools">
+          <div class="tools__inner">
+            <div class="search-wrap">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4 4" />
+              </svg>
+              <label class="sr-only" for="wine-search">Search wines</label>
+              <input
+                id="wine-search"
+                type="search"
+                inputmode="search"
+                enterkeyhint="search"
+                autocomplete="off"
+                placeholder="Search wines, styles or regions"
+              />
+              <button class="clear-search" id="wine-clear" type="button" hidden>Clear</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-section">
+          <div class="results-line">
+            <h2 id="wines-title">Wines</h2>
+            <p id="wine-count" aria-live="polite">49 wines</p>
+          </div>
+          <p class="section-status">Full current Streatley list. Dryness and body are a practical guide; tasting notes and prices follow the venue menu.</p>
+          <div class="catalog-list" id="wine-list"></div>
+          <div class="empty-state" id="wine-empty" hidden>
+            <p>No wines found.</p>
+            <button id="wine-reset" type="button">Show all wines</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-view" id="beers-view" aria-labelledby="beers-title" hidden>
+        <div class="tools catalog-tools">
+          <div class="tools__inner">
+            <div class="search-wrap">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4 4" />
+              </svg>
+              <label class="sr-only" for="beer-search">Search beer and cider</label>
+              <input
+                id="beer-search"
+                type="search"
+                inputmode="search"
+                enterkeyhint="search"
+                autocomplete="off"
+                placeholder="Search beers, ciders or styles"
+              />
+              <button class="clear-search" id="beer-clear" type="button" hidden>Clear</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-section">
+          <div class="results-line">
+            <h2 id="beers-title">Beer &amp; cider</h2>
+            <p id="beer-count" aria-live="polite">14 drinks</p>
+          </div>
+          <p class="section-status">Menu-listed range; ask the bar for rotating taps. Check the bottle or keg badge before service.</p>
+          <div class="catalog-list" id="beer-list"></div>
+          <div class="empty-state" id="beer-empty" hidden>
+            <p>No beer or cider found.</p>
+            <button id="beer-reset" type="button">Show all beer &amp; cider</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="study-view" id="study-view" aria-labelledby="study-title" hidden>
         <div class="study-dashboard" id="study-dashboard">
           <div class="study-intro">
-            <p class="eyebrow">Spaced repetition</p>
-            <h2 id="study-title">Train the full menu.</h2>
-            <p>
-              Your 26 flashcards are scheduled from your answers. Difficult drinks return
-              sooner; confident answers wait longer.
-            </p>
+            <p class="eyebrow">Study mode</p>
+            <h2 id="study-title">Learn the menu.</h2>
+            <p>Review what is due, reveal the spec, then rate your recall.</p>
           </div>
 
           <div class="study-start-panel">
             <div>
-              <p class="study-start-panel__label">Today’s queue</p>
+              <p class="study-start-panel__label">Due now</p>
               <p id="study-next-due" aria-live="polite">26 cards ready now</p>
             </div>
             <button class="study-primary" id="study-start" type="button">Study 26 due</button>
@@ -158,24 +228,16 @@
               <dd id="study-new-count">26</dd>
             </div>
             <div>
-              <dt>Learned</dt>
+              <dt>Seen</dt>
               <dd id="study-learnt-count">0</dd>
             </div>
             <div>
               <dt>Streak</dt>
-              <dd><span id="study-streak">0</span><small> days</small></dd>
+              <dd><span id="study-streak">0</span><small id="study-streak-unit"> days</small></dd>
             </div>
           </dl>
 
-          <aside class="study-how">
-            <h3>How scheduling works</h3>
-            <p>
-              Reveal the answer, then choose Again, Hard, Good or Easy. Your review
-              intervals are saved privately on this device.
-            </p>
-          </aside>
-
-          <button class="study-reset" id="study-reset" type="button">Reset study progress</button>
+          <button class="study-reset" id="study-reset" type="button">Reset progress</button>
         </div>
 
         <div class="study-session" id="study-session" hidden>
@@ -190,10 +252,10 @@
             <span id="study-progress-bar"></span>
           </div>
 
-          <article class="study-card" aria-live="polite">
+          <article class="study-card">
             <div id="study-card-stage"></div>
-            <div class="study-answer" id="study-answer" hidden></div>
-            <button class="show-answer" id="show-answer" type="button">Show answer</button>
+            <div class="study-answer" id="study-answer" role="region" aria-label="Cocktail specification" hidden></div>
+            <button class="show-answer" id="show-answer" type="button" aria-controls="study-answer" aria-expanded="false">Show answer</button>
           </article>
 
           <div class="study-grades" id="study-grades" aria-label="Grade your answer" hidden></div>
@@ -202,7 +264,7 @@
 
         <div class="study-complete" id="study-complete" hidden>
           <p class="eyebrow">Session complete</p>
-          <h2>Good shift.</h2>
+          <h2>Review complete.</h2>
           <p id="study-result-summary">0 answers graded</p>
           <ul id="study-result-breakdown"></ul>
           <button class="study-primary" id="study-restart" type="button">Back to study home</button>
@@ -211,9 +273,12 @@
     </main>
 
     <footer>
-      <p>Quick reference and training · No login · No tracking</p>
-      <p>Revised source dated 23 July 2026</p>
-      <p>Licensed photos credited on every image</p>
+      <p>Working measures: 23 July · Public menu checked 14 August 2026</p>
+      <p>
+        <a href="https://coppa.cdn.prismic.io/coppa/0dpm9vlfSEC_ogy5_Summer26DrinksMenuHIGH110x250WEB.pdf" target="_blank" rel="noopener">Drinks menu</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://coppa.cdn.prismic.io/coppa/pdFipmP7wvLMdqz__Summer26DrinksMenuSummerofSpritzHIGHWEB.pdf" target="_blank" rel="noopener">Spritz menu</a>
+      </p>
     </footer>
 
     <dialog class="install-dialog" id="install-dialog" aria-labelledby="install-title">
@@ -248,7 +313,7 @@
           <p>Scroll down and tap <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</p>
         </li>
       </ol>
-      <p class="install-note">Once opened, the recipe list also works without a signal.</p>
+      <p class="install-note">Once opened, the bar guide also works without a signal.</p>
       <button class="dialog-done" id="dialog-done" type="button">Got it</button>
     </dialog>
 
@@ -260,7 +325,7 @@
     >
       <div class="dialog-top bottle-dialog__top">
         <div>
-          <p class="eyebrow">Bottle / ingredient photo</p>
+          <p class="eyebrow">Ingredient reference</p>
           <h2 id="bottle-title">Product name</h2>
         </div>
         <button
@@ -289,12 +354,16 @@
         <a id="bottle-credit" href="#" target="_blank" rel="noopener">Photo source</a>
         <span aria-hidden="true">·</span>
         <a id="bottle-license" href="#" target="_blank" rel="noopener">Licence</a>
+        <span id="bottle-product-reference">
+          <span aria-hidden="true">·</span>
+          <a id="bottle-product-source" href="#" target="_blank" rel="noopener">Product source</a>
+        </span>
       </p>
       <button class="dialog-done" id="bottle-done" type="button">Close photo reference</button>
     </dialog>
 
     <noscript>
-      <p class="noscript">JavaScript is needed to search and display the recipe cards.</p>
+      <p class="noscript">JavaScript is needed to search and display the bar guide.</p>
     </noscript>
 
     <script type="module" src="./app.js"></script>

@@ -1,61 +1,52 @@
 # QA inventory
 
-## User-visible claims
+## Content and source checks
 
-- The initial iPhone view clearly shows the venue, cheat-sheet purpose, source warning,
-  search, category filters, and the start of the recipe list.
-- Text is comfortably readable, controls meet a 44 px touch-target minimum, and no
-  content clips or creates page-level horizontal scrolling at 390 px or 320 px.
-- All 26 recipes appear in the correct 5 / 7 / 5 / 9 categories with source prices,
-  builds, glass/ice, methods, finishes, and visible alcohol-free labels where applicable.
-- Every recipe has a credited, useful-alt-text cocktail photograph in the source
-  Coupe/Martini, Rocks, Highball, or large wine-glass family; no image is broken,
-  distorted, or dependent on a third-party runtime.
-- Exact source ingredient names remain visible. Every one of the 30 bottled product
-  mappings adds a verified type and opens either the matching reusable product photo
-  or an explicitly labelled ingredient/category photo—never a different brand's bottle.
-- The bottle dialog fits on iPhone, has a prominent close control, contains keyboard
-  focus, restores trigger focus, and closes via Close, Escape, outside tap, or browser Back.
-- Search is fast across names and ingredients; category filters, clear, empty-state
-  reset, and diacritic-insensitive search all work with visible result counts.
-- The Install control gives exact Safari Add-to-Home-Screen guidance and can be closed.
-- Study mode contains all 26 imported flashcard fronts and uses the audited recipe
-  records for every answer.
-- Again / Hard / Good / Easy show their next intervals, Again re-queues a card,
-  learning cards graduate, and review progress persists locally after reload.
-- Study dashboard, question, revealed answer, grading controls, completion summary,
-  empty-due state, and reset confirmation are usable at iPhone sizes.
-- Relative app-shell paths, the manifest, icons, service-worker scope, and all 56
-  visual assets plus the Study modules work offline from a GitHub Pages-style subpath.
-- Desktop layout is balanced and retains readable card structure.
-- The site has no login, analytics, tracking scripts, or third-party runtime assets.
+- Cocktails contains 26 builds in the expected 5 Coupe / 7 Rocks / 5 Highball /
+  9 Spritz groups; Study contains the same 26 cocktails and no wine, beer, or cider.
+- Wines contains 49 current Streatley entries. Names, origins, venue notes, formats,
+  and prices match the venue page/menu; dryness and body are clearly presented as
+  a practical guide rather than venue copy.
+- Beer & cider contains 14 current draught or packaged entries. Venue-listed
+  draught ABVs and producer-checked packaged ABVs are attributed correctly.
+- Seasonal spritz prices match the current Coppa menu, while the interface retains
+  the Streatley availability/till caveat.
+- Canal Grando and REAL are labelled as likely pours, never confirmed cocktail
+  mappings. REAL is described as alcohol-free, not `0.0%`.
+- The Blazing Pineapple Buck warns that the public wording may describe one
+  spiced-orange ginger beer mixer; the reconstructed split is not overstated.
+- Product names use safe current forms such as Altos Plata Tequila, MARTINI Riserva
+  Speciale Rubino, Havana Club 3yr / 7yo, and Discarded Banana Peel Rum.
+- Vintage, packaged ABV, keg, till, and live bar-bible checks are prominent wherever
+  their changeability matters.
 
-## Control and state coverage
+## Functional and visual checks
 
-| Control or state | Functional check | Visual check |
+| Area | Functional check | Visual/accessibility check |
 | --- | --- | --- |
-| Search | Enter `pineapple`; verify matching cards and count; clear | Filtered cards remain legible |
-| Category chips | Select Rocks; select All | Active state is unmistakable |
-| Combined search/filter | Select Spritz and search `0%` | Two alcohol-free cards remain uncluttered |
-| Empty result | Search impossible text; use Show all | Empty state is centered and actionable |
-| Diacritic search | Search `pina`; find Spiced Piña Colada | Correct card name renders |
-| Bottle references | Open all 30 unique product IDs and compare title/type/alt/mapping | Correct product or clearly labelled ingredient photo fits; affordance is obvious |
-| Bottle dismissal | Close by button, Escape, outside tap, browser Back; tab repeatedly | Focus stays in the dialog and returns to the trigger |
-| Image loading | Scroll through all 26 lazy images; force one bad URL | All images load; clear fallback replaces the failed image |
-| Install | Open dialog; close with both controls/backdrop | Steps and Share icon fit on iPhone |
-| Offline | Load once, set browser offline, reload subpath, open bottle | Saved page, 26 recipes, drink photos, credits, and product reference remain visible |
-| Responsive | Inspect 390×844, 320×568, and 1440×900 | No clipping, overlap, or horizontal page scroll |
-| Motion | Trigger a category filter | Card entrance is restrained; reduced-motion rule exists |
-| App sections | Switch Recipes â†’ Study â†’ Recipes | Active section is obvious and the Study action is above the fold |
-| Study start/reveal | Start 26 due cards; reveal the answer | Question remains focused; answer is readable and uses the drink photo |
-| Study grades | Use Again, then three Easy grades; confirm the card returns | Four large grade targets and interval labels remain visible |
-| Learning graduation | Grade the returned learning card Good | The next Good interval changes to one day |
-| Study persistence | Grade cards, reload, inspect counts and streak | Dashboard reflects saved progress without layout shift |
-| Study completion | Complete a staged one-card queue | Grade breakdown and return action are clear |
-| Study reset | Dismiss once, then confirm | Progress is only erased after confirmation |
-| Study offline | Load once, go offline, reload `#study`, reveal an answer | Dashboard, card, photo, ingredients and grading controls remain available |
-| Study edge states | Stage no cards due; corrupt saved JSON | Start disables with next-due copy; damaged state recovers to a fresh deck |
+| Four views | Open direct hashes for `#cocktails`, `#wines`, `#beers`, and `#study`; switch repeatedly | Active nav state is clear; each view begins below the header without a scroll jump |
+| Scoped search | Search `pineapple` in Cocktails, a region/style in Wines, and `lager` in Beer; clear each | Only the active catalogue changes; count and empty state remain legible |
+| Cocktail filters | Select each serve, combine a filter with search, then reset | Selected chip is unmistakable and counts remain accurate |
+| Recipe specs | Inspect the densest and shortest builds | Specs scan on the left; the smaller photo stays on the right; colour cues supplement rather than replace labels |
+| Wine catalogue | Search name, grape/region, dry/sweet wording, and tasting note | Group headings and practical style descriptors are easy to distinguish |
+| Beer catalogue | Search brewery, style, format, cider, and ABV | Draught, packaged, and alcohol-free groupings scan cleanly |
+| Product dialog | Open each unique product mapping; dismiss by button, Escape, backdrop, and browser Back | Correct image or `exact bottle not shown`; focus stays contained and returns to the trigger |
+| Study | Start, reveal, use each grade, finish a staged queue, reload, and reset | No reveal scroll jump; spec is left/photo right; controls meet touch-target minimum |
+| Offline/PWA | Load once, go offline, reload each direct hash, reveal a Study answer | All catalogues, recipes, local images, and saved progress remain usable |
+| Responsive | Inspect 320×568, 390×844, and 1440×900 | No clipping, overlap, or page-level horizontal scrolling |
+| Keyboard/motion | Tab through controls; use Space to reveal outside form fields; enable reduced motion | Focus is visible; typing and controls are not intercepted; motion is restrained |
+| Images | Scroll all lazy images and force one bad URL | No distortion or third-party runtime dependency; fallback is clear |
+| Privacy | Inspect network and source | No login, analytics, tracking, cookies, or third-party runtime assets |
 
-Exploratory checks: rapidly alternate search and filters; use a long ingredient query;
-inspect the densest build cards; switch sections mid-session; close a Study bottle
-reference; test no-due and corrupt-storage recovery; and reload a direct hash URL offline.
+## Study scheduling checks
+
+- All 26 new cards are initially due; Again re-queues a card; Hard / Good / Easy
+  show their next intervals; learning cards graduate as expected.
+- Due, New, Seen, streak, session grade breakdown, no-due state, and completion
+  summary update without layout shift.
+- Progress persists under `coppa-study-v1`; corrupt saved JSON safely recovers to a
+  fresh deck; reset requires confirmation.
+
+Exploratory coverage should include rapid view/search/filter changes, long queries,
+the densest build, opening a product reference during Study, offline direct-hash
+reloads, and checks against the current till, bottle labels, and keg badges.
